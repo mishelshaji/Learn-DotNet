@@ -1,0 +1,29 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# String Datatype
+
+A string is a collection of chars. It is a reference type. In C# a " is used to mark the beginning and end of a string.
+
+#!csharp
+
+string s = "Hello World!";
+Console.WriteLine(s);
+
+#!markdown
+
+## Escaping a string
+
+A string can be escaped by using a \ before the character. This is useful for example when you want to use a " in a string.
+
+#!csharp
+
+string text = "This is "cool!!!"."; // This gives error
+
+#!csharp
+
+string text = "This is \"cool!!!\". Try this";
+Console.WriteLine(text);

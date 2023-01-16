@@ -1,0 +1,98 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Numeric Types
+
+#!markdown
+
+- Byte - 8-bit unsigned integer. Range: 0 to 255 (0x00 to 0xFF).
+- Sbyte - 8-bit signed integer. Range: -128 to 127 (-0x80 to 0x7F).
+
+- Short - 16-bit signed integer. Range: -32768 to 32767 (-0x8000 to 0x7FFF).
+- Ushort - 16-bit unsigned integer. Range: 0 to 65535 (0x0000 to 0xFFFF).
+
+- Int - 32-bit signed integer. Range: -2147483648 to 2147483647 (-0x80000000 to 0x7FFFFFFF).
+- Uint - 32-bit unsigned integer. Range: 0 to 4294967295 (0x00000000 to 0xFFFFFFFF).
+
+- Long - 64-bit signed integer. Range: -9223372036854775808 to 9223372036854775807 (-0x8000000000000000 to 0x7FFFFFFFFFFFFFFF).
+- Ulong - 64-bit unsigned integer. Range: 0 to 18446744073709551615 (0x0000000000000000 to 0xFFFFFFFFFFFFFFFF).
+
+- Float - 32-bit floating point number. Range: -3.40282347E+38 to 3.40282347E+38 (-0x1.fffffep+127 to 0x1.fffffep+127).
+- Double - 64-bit floating point number. Range: -1.7976931348623157E+308 to 1.7976931348623157E+308 (-0x1.fffffffffffffp+1023 to 0x1.fffffffffffffp+1023).
+
+- Decimal - 128-bit floating point number. Range: -79228162514264337593543950335 to 79228162514264337593543950335 (-0x1.ffffffffffffffffffffffffffffp+96 to 0x1.ffffffffffffffffffffffffffffp+96).
+
+- Char - 16-bit Unicode character. Range: U+0000 to U+FFFF.
+
+- Bool - 8-bit boolean value. Range: True or False.
+
+# Non-Numeric Types
+
+- String - A sequence of Unicode characters.
+
+- Object - The base class of all classes in the .NET Framework.
+
+- Array - A collection of variables of the same type.
+
+- Enum - A set of named constants.
+
+- Delegate - A reference to a method.
+
+- Interface - A reference type that defines a set of methods, properties, events, or indexers that a class or struct must implement.
+
+- Struct - A value type that can encapsulate data and related functionality.
+
+- Class - A reference type that can encapsulate data and related functionality.
+
+- Exception - A base class for all exceptions.
+
+- Dynamic - A type that represents a dynamic data element.
+
+- Void - A return type that indicates that a method does not return a value.
+
+#!csharp
+
+byte b = 10; // 8-bit unsigned
+sbyte sb = -10; // 8-bit signed
+
+short s = 10; // 16-bit signed
+ushort us = 10; // 16-bit unsigned
+
+int i = 10; // 32-bit signed
+uint ui = 10; // 32-bit unsigned
+
+long l = 10; // 64-bit signed
+ulong ul = 10; // 64-bit unsigned
+
+float f = 10.0F; // 32-bit floating point
+double d = 10.0; // 64-bit floating point
+
+decimal dec = 10.0M; // 128-bit floating point
+
+#!markdown
+
+# Boolean
+
+#!csharp
+
+bool b = true; // true or false
+
+#!markdown
+
+# Char
+
+#!csharp
+
+char c = 'A'; // 16-bit Unicode character
+
+#!markdown
+
+# String
+
+#!csharp
+
+string s = "Hello World"; // String
+string sv = @"Hello World"; // String with verbatim syntax

@@ -1,0 +1,156 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# String Functions
+
+#!csharp
+
+string s = "This is a string";
+
+#!markdown
+
+## String Length
+
+To find the length of a string, use the Length property.
+
+#!csharp
+
+string data = "This is a string";
+Console.WriteLine(data.Length);
+
+#!markdown
+
+## Case Conversion
+
+To convert a string to uppercase or lowercase, use the ToUpper and ToLower methods.
+
+#!csharp
+
+string data = "This is a string";
+
+Console.WriteLine(data.ToUpper());
+Console.WriteLine(data.ToLower());
+
+#!markdown
+
+## Trim Whitespace
+
+To trim whitespace from the beginning or end of a string, use the Trim, TrimStart and TrimEnd methods.
+
+#!csharp
+
+string data = "     This is a string     ";
+
+// Trim method removes all leading and trailing white spaces
+Console.WriteLine(data.Trim());
+
+// TrimStart method removes all leading white spaces
+Console.WriteLine(data.TrimStart());
+
+// TrimEnd method removes all trailing white spaces
+Console.WriteLine(data.TrimEnd());
+
+#!markdown
+
+## IndexOf
+
+To find the index of a substring within a string, use the IndexOf method. If the substring is found, the method returns the index of the first character of the substring. If the substring is not found, the method returns -1.
+
+#!csharp
+
+string data = "John, Jane, and Joe are my friends";
+
+// The IndexOf method returns the index of the first occurrence of the specified string.
+Console.WriteLine(data.IndexOf("Jane"));
+
+// The IndexOf method returns -1 if the specified string is not found.
+Console.WriteLine(data.IndexOf("Janet"));
+
+#!markdown
+
+## Contains
+
+To determine whether a string contains a substring, use the Contains method. If the substring is found, Contains returns True. If the substring is not found, Contains returns False.
+
+#!csharp
+
+string data = "John, Jane, and Joe are my friends";
+
+// The Contains method returns true if the specified string is found.
+Console.WriteLine(data.Contains("Jane"));
+
+// The Contains method returns false if the specified string is not found.
+Console.WriteLine(data.Contains("Janet"));
+
+#!markdown
+
+## ToCharArray
+
+To convert a string to an array of characters, use the ToCharArray method.
+
+#!csharp
+
+string data = "Hello";
+
+char[] chars = data.ToCharArray();
+foreach (char c in chars)
+{
+    Console.WriteLine(c);
+}
+
+#!markdown
+
+## Split
+
+To split a string into an array of substrings, use the Split method.
+
+#!markdown
+
+### Split based on a character
+
+#!csharp
+
+string data = "Hello World";
+
+string[] words = data.Split(' ');
+words
+
+#!markdown
+
+### Split based on a string
+
+#!csharp
+
+string data = "Hello World";
+
+string[] words = data.Split(" ");
+words
+
+#!markdown
+
+## Replace
+
+To replace a substring within a string, use the Replace method.
+
+#!csharp
+
+string data = "Hello World";
+
+data = data.Replace("Hello", "Hi");
+Console.WriteLine(data);
+
+#!markdown
+
+## Remove
+
+To remove a substring from a string, use the Remove method.
+
+#!csharp
+
+string data = "Hello World";
+
+data = data.Remove(0, 5);
+Console.WriteLine(data);

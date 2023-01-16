@@ -1,0 +1,85 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# String Formatting methods
+
+There are several methods to join strings in C#.
+
+#!csharp
+
+string firstName = "John";
+string lastName = "Doe";
+int age = 25;
+
+// Concatenate the two strings
+string fullName = firstName + " " + lastName;
+Console.WriteLine(fullName);
+
+// Use the + operator to concatenate a string with other data types
+string message = firstName + " " + lastName + " is " + age + " years old.";
+Console.WriteLine(message);
+
+#!markdown
+
+## String Interpolation
+
+String interpolation is a new feature in C# 6.0. It allows you to embed expressions directly in a string literal. The syntax is to prefix the string literal with the `$` character. Then, you can embed any valid expression by surrounding it with braces (`{` and `}`). The expression is evaluated, and its result is converted to a string and inserted into the string literal.
+
+#!csharp
+
+string firstName = "John";
+string lastName = "Doe";
+int age = 25;
+
+// Use string interpolation
+string message = $"{firstName} {lastName} is {age} years old.";
+Console.WriteLine(message);
+
+#!markdown
+
+## String.Format
+
+This method is used to format strings. It is used to format strings in a similar way to the printf function in C.
+
+#!csharp
+
+string firstName = "John";
+string lastName = "Doe";
+int age = 25;
+
+// Use string.Format
+string message = string.Format("{0} {1} is {2} years old.", firstName, lastName, age);
+Console.WriteLine(message);
+
+#!markdown
+
+## String.Join
+
+This method is used to join a collection of strings into a single string. The separator is specified as the first parameter. The second parameter(s) is the collection of strings to join.
+
+#!csharp
+
+string firstName = "John";
+string lastName = "Doe";
+
+// Use string.Join
+string fullName = string.Join(" ", firstName, lastName);
+Console.WriteLine(fullName);
+
+#!markdown
+
+## String.Concat()
+
+This method is used to join a collection of strings into a single string.
+
+#!csharp
+
+string firstName = "John";
+string lastName = "Doe";
+
+// Use string.Concat
+string fullName = string.Concat(firstName, " ", lastName);
+Console.WriteLine(fullName);

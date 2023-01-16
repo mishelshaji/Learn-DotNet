@@ -1,0 +1,49 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Get Started
+
+#!markdown
+
+## Console.Write()
+
+This method writes text to the console. It does not create a new line.
+
+#!csharp
+
+Console.Write("Hello");
+Console.Write("Hello");
+
+#!markdown
+
+## Console.WriteLine()
+
+This method writes line of text to the console. It creates a new line.
+
+#!csharp
+
+Console.WriteLine("Hello");
+Console.WriteLine("Hello");
+
+#!csharp
+
+Console.Write('H');
+
+#!csharp
+
+Console.WriteLine(500);
+
+string message = "This is a message";
+Console.WriteLine(message);
+
+#!markdown
+
+## Displaying variables
+
+#!csharp
+
+string message = "This is a message";
+Console.WriteLine(message);

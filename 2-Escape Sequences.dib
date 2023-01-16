@@ -1,0 +1,47 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Escape sequences
+
+#!markdown
+
+## New Line - \n
+
+We can use the escape sequence `\n` to create a new line. This is useful when we want to print a long string on multiple lines.
+
+#!csharp
+
+Console.WriteLine("Line 1 \nLine 2");
+
+#!markdown
+
+## New Line (Windows) - \r\n
+
+We can use the escape sequence `\r\n` to create a new line. This is useful when we want to print a long string on multiple lines. This is the same as `\n` but is used in Windows.
+
+#!csharp
+
+Console.WriteLine("Line 1 \r\nLine 2");
+
+#!markdown
+
+## Carriage Return - \r
+
+A carriage return is a control character or mechanism used to reset a device's position to the beginning of a line of text. It is also known as the enter key and is labeled with a backward arrow symbol (↵). It is represented as a \r escape sequence in programming languages such as C, Java, and Perl and regular expressions. It is not the same as a newline or linefeed.
+
+#!csharp
+
+Console.WriteLine("JS is a programming language. \rC#");
+
+#!markdown
+
+# Spacing (Tab) - \t
+
+We can use the escape sequence `\t` to create a tab.
+
+#!csharp
+
+Console.WriteLine("Line 1\tLine 2");
