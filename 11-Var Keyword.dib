@@ -1,0 +1,68 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# The var keyword
+
+In C#, the var keyword is used to declare a variable of a type that is inferred from the value of the expression on the right side of the assignment operator.
+
+#!markdown
+
+> Important: Var is not a data type.
+
+#!markdown
+
+In the following example, the variable x is declared as a var and is assigned the value 10. The compiler infers that x is an integer from the value assigned.
+
+#!csharp
+
+var i = 10;
+Console.WriteLine(i.GetType());
+
+#!markdown
+
+## Var is not dynamic typing
+
+The var keyword is not dynamic typing. In dynamic typing, the type of a variable is determined at runtime. But in the case of var, the type is determined at compile time. This means that once a variable is declared as a var, it cannot be assigned a value of a different type.
+
+#!csharp
+
+var i = 10;
+Console.WriteLine(i.GetType().Name);
+
+i = "TEN"; // Error
+
+#!markdown
+
+## Limitations of var
+
+The var keyword has the following limitations:
+
+- The var keyword can be used only with local variables. 
+- It cannot be used with fields or properties.
+- It cannot be used with method parameters or return types.
+
+#!markdown
+
+Here is an example that shows var CANNOT be used as a method parameter:
+
+#!csharp
+
+// Error
+void Add(var x, var y){
+    Console.WriteLine(x + y);
+}
+
+#!markdown
+
+The following code is valid:
+
+#!csharp
+
+void Add(int x, int y){
+    Console.WriteLine(x + y);
+}
+
+Add(5, 6);

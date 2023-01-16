@@ -186,3 +186,18 @@ The `Convert.ToBoolean()` method is similar to the `bool.Parse()` method. The di
 string s = "true";
 bool b = Convert.ToBoolean(s);
 Console.WriteLine(b);
+
+#!markdown
+
+## Char to Integer
+
+A character can be directly converted to an integer by casting it to an integer. This conversion is done implicitly.
+
+This means that you don't have to use any methods to convert a character to an integer.
+
+#!csharp
+
+char c = 'A';
+int i = c;
+
+Console.WriteLine(i);
