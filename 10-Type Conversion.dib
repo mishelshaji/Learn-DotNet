@@ -1,0 +1,188 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Type Conversion and Casting
+
+Type conversion and casting are two different things. Type conversion is when you convert a value from one type to another. Type casting is when you convert a value from one type to another, but done implicitly.
+
+In C#, type conversions as classified into two types:
+- Implicit conversions
+- Explicit conversions
+
+## Implicit Conversions
+
+Implicit conversions are conversions that are done automatically by the compiler. These conversions are done when the source type is implicitly convertible to the target type. 
+
+For example, when you assign a value of type `int` to a variable of type `long`, the compiler automatically converts the `int` to a `long`.
+
+For an Implicit conversion to happen, the following conditions must be met:
+- The source type must be implicitly convertible to the target type.
+- The target type must be equal to or larger than the source type.
+
+```csharp
+int i = 123;
+long l = i;
+```
+
+## Explicit Conversions
+
+Explicit conversions are conversions that are done explicitly by the programmer. These conversions are done when the source type is not implicitly convertible to the target type. 
+
+For example, when you assign a value of type `string` to a variable of type `int`, the compiler will not automatically convert the `string` to an `int`. Instead, you must explicitly convert the `string` to an `int`:
+
+```csharp
+string s = "123";
+int i = int.Parse(s);
+```
+
+#!markdown
+
+## Converting String to Integer
+
+The following methods can be used to convert a string to an integer:
+- `int.Parse()`
+- `int.TryParse()`
+- `Convert.ToInt32()`
+
+#!markdown
+
+### int.Parse()
+
+When converting a string to an integer, you can use the `int.Parse()` method. This method takes a string as a parameter and returns an integer.
+
+#!csharp
+
+string s = "50";
+int i = int.Parse(s);
+
+Console.WriteLine(i);
+
+#!markdown
+
+If the string cannot be converted to an integer, an exception is thrown.
+
+#!csharp
+
+string s = "ABCD";
+int i = int.Parse(s); // throws FormatException
+
+#!markdown
+
+### int.TryParse()
+
+The `int.TryParse()` method is similar to the `int.Parse()` method. The difference is that the `int.TryParse()` method returns a boolean value. If the string can be converted to an integer, the method returns `true`. If the string cannot be converted to an integer, the method returns `false`.
+
+#!csharp
+
+string s = "50";
+
+// Using int.TryParse
+int i;
+if (int.TryParse(s, out i))
+{
+    Console.WriteLine(i);
+}
+else
+{
+    Console.WriteLine("Invalid integer");
+}
+
+#!markdown
+
+### Convert.ToInt32()
+
+The `Convert.ToInt32()` method is similar to the `int.Parse()` method. The difference is that the `Convert.ToInt32()` method returns an integer.
+
+#!csharp
+
+string s = "50";
+int i = Convert.ToInt32(s);
+i
+
+#!markdown
+
+#### Difference between int.Parse() and Convert.ToInt32()
+
+The `int.Parse()` method throws an exception if the string is `null`. The `Convert.ToInt32()` method returns `0` if the string is `null`.
+
+#!csharp
+
+string s = null;
+int i = Convert.ToInt32(s); // 50
+Console.WriteLine(i);
+
+#!csharp
+
+string s = null;
+int i = int.Parse(s); // Throws ArgimentNullException
+Console.WriteLine(i);
+
+#!markdown
+
+## String to Double
+
+The following methods can be used to convert a string to a double:
+- `double.Parse()`
+- `double.TryParse()`
+- `Convert.ToDouble()`
+
+As it is similar to converting a string to an integer, the `double.Parse()`, `double.TryParse()` and `Convert.ToDouble()` methods work in the same way. The only difference is that the `double.Parse()`, `double.TryParse()` and `Convert.ToDouble()` methods return a double.
+
+#!markdown
+
+## String to Boolean
+
+The following methods can be used to convert a string to a boolean:
+- `bool.Parse()`
+- `bool.TryParse()`
+- `Convert.ToBoolean()`
+
+#!markdown
+
+### bool.Parse()
+
+The `bool.Parse()` method takes a string as a parameter and returns a boolean. The string must be either `true` or `false` (case insensitive).
+
+If the string is not `true` or `false`, an exception is thrown.
+
+#!csharp
+
+string s = "true";
+bool b = bool.Parse(s);
+Console.WriteLine(b);
+
+#!markdown
+
+### bool.TryParse()
+
+The `bool.TryParse()` method is similar to the `bool.Parse()` method. The difference is that the `bool.TryParse()` method returns a boolean value. If the string is `true` or `false`, the method returns `true`. If the string is not `true` or `false`, the method returns `false`.
+
+#!csharp
+
+// Convert using bool.TryParse()
+string s = "true";
+bool b;
+if (bool.TryParse(s, out b))
+{
+    Console.WriteLine(b);
+}
+else
+{
+    Console.WriteLine("Invalid boolean");
+}
+
+#!markdown
+
+### Convert.ToBoolean()
+
+The `Convert.ToBoolean()` method is similar to the `bool.Parse()` method. The difference is that the `Convert.ToBoolean()` method returns a boolean even if the string is null.
+
+#!csharp
+
+// Convert using Convert.ToBoolean()
+string s = "true";
+bool b = Convert.ToBoolean(s);
+Console.WriteLine(b);
