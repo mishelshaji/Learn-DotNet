@@ -67,3 +67,77 @@ int[] data = { 1, 2, 3, 4, 5 };
 
 // string elements = String.Join(",", data);
 Console.WriteLine(String.Join(",", data));
+
+#!markdown
+
+## Sorting an array - Array.Sort()
+
+We can use Array.Sort() method to sort an array. The method sorts the array in ascending order.
+
+#!csharp
+
+int[] numbers = { 1, 5, 4, 7, 8 };
+Array.Sort(numbers);
+
+numbers
+
+#!markdown
+
+## Sorting an array in descending order - Array.Reverse()
+
+We can use Array.Reverse() method to sort an array in descending order.
+
+#!csharp
+
+int[] numbers = { 1, 5, 4, 7, 8 };
+Array.Reverse(numbers);
+
+numbers
+
+#!markdown
+
+## Filling all elements - Array.Fill()
+
+We can use Array.Fill() method to fill all elements of an array with a specified value. For example, when we create an integer array, all elements are initialized to 0. We can use Array.Fill() method to fill all elements with a different value.
+
+The following example fills all the elements of an integer array with 1.
+
+#!csharp
+
+int[] numbers = new int[5];
+Array.Fill(numbers, 1);
+
+numbers
+
+#!markdown
+
+Removing all elements - Array.Clear()
+
+We can use Array.Clear() method to remove all elements of an array. The following example removes all elements of an integer array. When we call the clear method, the values of all elements are set to default.
+
+#!csharp
+
+int[] numbers = { 1, 5, 4, 7, 8 };
+Array.Clear(numbers);
+
+numbers
+
+#!markdown
+
+## Copy an array - Array.Copy()
+
+We can use Array.Copy() method to copy an array to another array. The following example copies an integer array to another integer array.
+
+#!csharp
+
+int[] numbers = { 1, 2, 3 };
+int[] copy = new int[5];
+
+Array.Copy(numbers, copy, numbers.Length);
+copy
+
+#!markdown
+
+Note that the destination array must be large enough to hold all the elements of the source array. Otherwise, an exception is thrown.
+
+In this example, the destination array is able to store 5 elements. But the source array has 3 elements. So, the first 3 elements of the source array are copied to the destination array. The remaining 2 elements of the destination array are not modified. They are still 0.
