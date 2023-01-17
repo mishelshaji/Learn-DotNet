@@ -1,0 +1,20 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Boxing And Unboxing
+
+Boxing is the process of converting a value type to a reference type. Unboxing is the process of converting a reference type to a value type.
+
+#!markdown
+
+In the following example, the value type int is boxed into an object. The object is then unboxed back into an int. Int is a value type, and object is a reference type.
+
+#!csharp
+
+int i = 10;
+object o = i; // Boxing
+
+int j = (int)o; // Unboxing

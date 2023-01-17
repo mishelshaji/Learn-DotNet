@@ -1,0 +1,147 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Looping Statements
+
+Looping statements are used to execute a block of code repeatedly. The looping statements are:
+- For Loop
+- While Loop
+- Do-While Loop
+- Foreach Loop
+
+#!markdown
+
+## For Loop
+
+The for loop is used to execute a block of code repeatedly for a given number of times. For loop is used when the exact number of iterations is known. The syntax of the for loop is:
+
+```
+for (initialization; condition; increment/decrement) {
+    // code to be executed
+}
+```
+
+#!csharp
+
+// A simple for loop that executes 5 times.
+for(int i = 0; i < 5; i++)
+{
+    Console.WriteLine(i);
+}
+
+#!markdown
+
+### For loop without value initialization
+
+#!csharp
+
+// For loop without value initialization.
+int i = 0;
+for(; i < 5; i++)
+{
+    Console.WriteLine(i);
+}
+
+#!markdown
+
+### For loop without increment/decrement
+
+#!csharp
+
+// For loop without value initialization and increment.
+int i = 0;
+for(; i < 5;)
+{
+    Console.WriteLine(i++);
+}
+
+#!markdown
+
+### For loop without condition
+
+#!csharp
+
+for(;;)
+{
+    Console.WriteLine("Infinite loop");
+    break; // If you uncomment this, the window might crash.
+}
+
+#!markdown
+
+## While loop
+
+The while loop is used to execute a block of code repeatedly until a given condition is satisfied. The syntax of the while loop is:
+
+```
+while (condition) {
+    // code to be executed
+}
+```
+
+#!csharp
+
+// A simple while loop
+int i = 0;
+while(i < 5)
+{
+    Console.WriteLine(i++);
+}
+
+#!markdown
+
+### Endless while loop
+
+#!csharp
+
+// Endless while loop
+while(true)
+{
+    Console.WriteLine("Infinite loop");
+    break; // If you uncomment this, the window might crash.
+}
+
+#!markdown
+
+## Do-While loop
+
+The do-while loop is used to execute a block of code repeatedly until a given condition is satisfied. The difference between the while loop and the do-while loop is that the do-while loop executes the code block at least once before checking the condition. The syntax of the do-while loop is:
+
+```
+do {
+    // code to be executed
+} while (condition);
+```
+
+#!csharp
+
+// Simple do-while loop
+int i = 10;
+do
+{
+    Console.WriteLine(i++);
+} while(i < 5);
+
+#!markdown
+
+## Foreach loop
+
+The foreach loop is used to execute a block of code repeatedly for each element in a collection / enumerable type. The syntax of the foreach loop is:
+
+```
+foreach (type variable in collection) {
+    // code to be executed
+}
+```
+
+#!csharp
+
+// Simple foreach loop
+int[] numbers = { 1, 2, 3, 4, 5 };
+foreach(var i in numbers)
+{
+    Console.WriteLine(i);
+}

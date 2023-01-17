@@ -1,0 +1,128 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Conditional Statement
+
+Conditional statements are used to execute a block of code only if a certain condition is met. The condition is evaluated and if it is true, the block of code is executed. If the condition is false, the block of code is skipped.
+
+The conditional statements in C# are:
+- if
+- if-else
+- switch
+- switch expression
+
+#!markdown
+
+## If Conditional Statement
+
+The if conditional statement is used to execute a block of code only if a certain condition is met. The condition is evaluated and if it is true, the block of code is executed. If the condition is false, the block of code is skipped.
+
+The syntax of the if conditional statement is:
+```csharp
+if (condition)
+{
+    // block of code to be executed if the condition is true
+}
+```
+
+#!csharp
+
+int totalMarks = 80;
+
+if (totalMarks >= 80) {
+    Console.WriteLine("You got an A");
+}
+
+#!markdown
+
+## If-Else Conditional Statement
+
+The if-else conditional statement is used to execute a block of code if a certain condition is met. If the condition is false, another block of code is executed.
+
+#!csharp
+
+int totalMarks = 80;
+
+if (totalMarks >= 80) 
+{
+    Console.WriteLine("You got an A");
+} 
+else 
+{
+    Console.WriteLine("You did not get an A");
+}
+
+#!markdown
+
+## Switch Conditional Statement
+
+The switch conditional statement is used to execute a block of code based on the value of a variable. The switch statement is a multi-way branch statement. It is used to select one of many code blocks to be executed.
+
+#!csharp
+
+int number = 10;
+
+switch (number) 
+{
+    case 1:
+        Console.WriteLine("Number is 1");
+        break;
+    case 2:
+        Console.WriteLine("Number is 2");
+        break;
+    case 3:
+        Console.WriteLine("Number is 3");
+        break;
+    default:
+        Console.WriteLine("Number is not 1, 2 or 3");
+        break;
+}
+
+#!markdown
+
+### Multiple Cases
+
+The switch statement can have multiple cases. The code block associated with each case is executed if the value of the variable matches the case value.
+
+#!csharp
+
+string number  = "ONE";
+
+switch(number){
+    case "ONE":
+    case "one":
+        Console.WriteLine("Number is ONE");
+        break;
+    case "TWO":
+    case "two":
+        Console.WriteLine("Number is TWO");
+        break;
+    case "THREE":
+        Console.WriteLine("Number is THREE");
+        break;
+    default:
+        Console.WriteLine("Number is not ONE, TWO or THREE");
+        break;
+}
+
+#!markdown
+
+## Switch Expression
+
+The switch expression is used to evaluate an expression and return a value based on the value of the expression. The switch expression is a multi-way branch expression. It is used to select one of many expressions to be evaluated.
+
+#!csharp
+
+// Simple switch expression
+int number = 10;
+string result = number switch
+{
+    1 => "Number is 1",
+    2 => "Number is 2",
+    3 => "Number is 3",
+    _ => "Number is not 1, 2 or 3"
+};
+Console.WriteLine(result);

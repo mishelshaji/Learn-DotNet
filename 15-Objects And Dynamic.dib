@@ -1,0 +1,123 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Objects And Dynamic
+
+#!markdown
+
+## Objects
+
+In C#, object is the base class of all classes. It is the root of the type hierarchy. Every type in C# is either a value type or a reference type. Value types are defined by the C# language and include all the built-in numeric types, Boolean, Char, and the enumeration types. Reference types are defined by the .NET Framework and include classes, interfaces, delegates, arrays, and the null type. The object type is a reference type.
+
+#!csharp
+
+object o = "Hello";
+Console.WriteLine(o);
+
+#!markdown
+
+You can use the object type to declare variables that can refer to any type. The following example declares a variable of type int and assigns it a string:
+
+#!csharp
+
+object o = 5;
+Console.WriteLine(o.GetType());
+
+o = "Hello";
+Console.WriteLine(o.GetType());
+
+#!markdown
+
+Let us create an array of objects and assign different types to it:
+
+#!csharp
+
+object[] data = {1, 2, 3, "Four", "Five", 6};
+
+foreach (object item in data)
+{
+    Console.WriteLine(item);
+}
+
+#!markdown
+
+### Value of an object should casted before using it
+
+#!csharp
+
+string s = "Hello";
+Console.WriteLine(s.ToUpper());
+
+object o = "Hello";
+Console.WriteLine(o.ToUpper()); // Error
+
+#!markdown
+
+To use the value of an object, you must cast it to the correct type.
+
+#!csharp
+
+object o = "Hello";
+string s = (string)o;
+Console.WriteLine(s.ToUpper()); // Error
+
+#!markdown
+
+An alternate method is to use the as operator. The as operator returns null if the conversion fails.
+
+#!csharp
+
+object o = "Hello";
+string s = o as string;
+Console.WriteLine(s.ToUpper()); // Error
+
+#!markdown
+
+If you try to cast the value to a wrong type, you will get an exception.
+
+#!csharp
+
+object o = "Hello"; // String
+int s = (int)o; // Error
+Console.WriteLine(s);
+
+#!csharp
+
+object[] data = {1, 2, 3, "Four", "Five", 6};
+
+int sum = 0;
+foreach(object item in data)
+{
+    var typeOfItem = item.GetType();
+    if(typeOfItem == typeof(int))
+    {
+        sum += (int)item;
+    }
+}
+Console.WriteLine(sum);
+
+#!markdown
+
+## Dynamic Type
+
+#!markdown
+
+In C#, the dynamic type enables you to invoke members on an object whose type is not known at compile time. The dynamic type is useful when you want to interact with COM objects, such as Microsoft Office applications, or dynamic APIs, such as IronPython libraries.
+
+#!csharp
+
+dynamic d = 5;
+d = "Hello";
+Console.WriteLine(d);
+
+#!markdown
+
+Unlike objects, you do not need to cast the value of a dynamic type to a specific type before using it.
+
+#!csharp
+
+dynamic d = "Hello";
+Console.WriteLine(d.ToUpper());
