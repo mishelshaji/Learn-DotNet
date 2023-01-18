@@ -1,0 +1,80 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Class
+
+A class is a collection of objects that have common properties. The properties are called attributes and the functions are called methods. A class is like a blueprint for creating objects. An object is an instance of a class.
+
+#!csharp
+
+class Person
+{
+    public string Name;
+    public int Age;
+}
+
+#!markdown
+
+In this example, we have a class called Person. The class has two attributes, name and age. To use these attributes, we have to create an object of the class using the `new` keyword.
+
+#!csharp
+
+class Person
+{
+    public string Name;
+    public int Age;
+}
+
+Person p = new Person();
+p.Name = "John";
+p.Age = 42;
+
+Console.WriteLine($"{p.Name} is {p.Age} years old.");
+
+#!markdown
+
+## Property Initializer
+
+#!markdown
+
+Instead of manually setting the properties of an object, we can use a property initializer. A property initializer is a block of code that is executed when an object is created. It is used to set the initial values for properties of an object.
+
+#!csharp
+
+class Person
+{
+    public string Name;
+    public int Age;
+}
+
+Person p = new Person(){
+    Name = "John",
+    Age = 42
+};
+
+Console.WriteLine($"{p.Name} is {p.Age} years old.");
+
+#!markdown
+
+## Writing Methods
+
+#!csharp
+
+class Person
+{
+    public string Name;
+    public int Age;
+
+    public void Display()
+    {
+        Console.WriteLine($"{Name} is {Age} years old.");
+    }
+}
+
+Person p = new Person();
+p.Name = "John";
+p.Age = 42;
+p.Display();
