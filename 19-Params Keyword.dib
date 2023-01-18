@@ -1,0 +1,88 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# The Params Keyword
+
+The params keyword is used to define a parameter that can accept any number of arguments.
+
+#!csharp
+
+void Add(int x, int y)
+{
+    Console.WriteLine(x + y);
+}
+
+Add(1, 2); // 3
+// Add(1, 2, 3); // Error
+
+#!markdown
+
+In the above example, we are unable to call the function with 3 or more arguments. This is because the function is defined to accept only 2 arguments. If we try to call the function with 3 or more arguments, we will get an error.
+
+To fix this, we can use the params keyword to define a parameter that can accept any number of arguments.
+
+#!csharp
+
+void Addition(params int[] numbers)
+{
+    int sum = 0;
+    foreach (int i in numbers)
+    {
+        sum += i;
+    }
+    Console.WriteLine(sum);
+}
+
+Addition();
+Addition(1, 2); // 3
+Addition(1, 2, 3); // 6
+Addition(1, 2, 3, 4); // 10
+
+#!markdown
+
+The problem with the above code is that we are able to call the function with 0 arguments. This is because the params keyword defines a parameter that can accept any number of arguments, but it does not define a parameter that must accept at least one argument.
+
+To fix this, we can first define two required parameters and then define a params parameter.
+
+#!csharp
+
+void AddNumbers(int x, int y, params int[] numbers)
+{
+    int sum = x + y;
+    foreach (int i in numbers)
+    {
+        sum += i;
+    }
+    Console.WriteLine(sum);
+}
+
+//AddNumbers(); // Error - Parameters x and y is required
+AddNumbers(1, 2); // 3
+AddNumbers(1, 2, 3); // 6
+AddNumbers(1, 2, 3, 4); // 10
+
+#!markdown
+
+## Using an array instead of params
+
+#!markdown
+
+If you use an array instead of the params keyword, you will get the same result. The only difference is that you will have to pass the parameter as an array.
+
+#!csharp
+
+void Sum(int x, int y, int[] numbers)
+{
+    int sum = x + y;
+    foreach (int i in numbers)
+    {
+        sum += i;
+    }
+    Console.WriteLine(sum);
+}
+
+Sum(1, 2, new int[] { 3, 4, 5 }); // 15
+// Sum(1, 2, 3, 4, 5); // Error - Cannot convert parameter 3 from int to int[]

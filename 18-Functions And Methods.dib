@@ -1,0 +1,233 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Functions And Methods
+
+A function is a block of code that performs a specific task. A method is a function that is associated with an object. A method is called by appending the method name to the object name, separated by a period. For example, the method append() is called by appending it to the list name, separated by a period.
+
+#!markdown
+
+In C#, the syntax to define a method is:
+```csharp
+access-modifier return-type method-name (parameter-list) {
+   method-body
+}
+```
+
+#!markdown
+
+Here's an example of a method that displays a greeting message.
+
+#!csharp
+
+void Greet()
+{
+    Console.WriteLine("Hello World");
+}
+
+Greet();
+
+#!markdown
+
+## Method Naming Rules
+
+- Method names should use the pascal case. Eg. `DisplayGreetingMessage()`.
+- Should not use the underscore character in method names. Eg. `Display_Greeting_Message()` is not allowed.
+- Method names should be descriptive. Eg. `DisplayGreetingMessage()` is better than `DisplayGreeting()`.
+- Method names should not be too long. Eg. `DisplayGreetingMessage()` is better than `DisplayGreetingMessageToTheUser()`.
+- Method names should not be too short. Eg. `DisplayGreetingMessage()` is better than `DisplayGreetingMsg()`.
+- Method names should not be too generic. Eg. `DisplayGreetingMessage()` is better than `Display()`.
+- Method names should not be too specific. Eg. `DisplayGreetingMessage()` is better than `DisplayGreetingMessageToTheUser()`.
+- Method names should not be too technical. Eg. `DisplayGreetingMessage()` is better than `DisplayGreetingMessageToTheUserUsingConsole()`.
+- Method names should not be too business specific. Eg. `DisplayGreetingMessage()` is better than `DisplayGreetingMessageToTheUserUsingConsoleInEnglish()`.
+- Method name should not be a keyword. Eg. `CreateNewUser()` is better than `new()`.
+
+#!markdown
+
+## Passing Parameters
+
+You can pass parameters to a method. The parameters are separated by commas. The following example shows a method that takes two parameters:
+
+#!csharp
+
+void Add(int a, int b)
+{
+    Console.WriteLine(a + b);
+}
+
+Add(1, 2);
+
+#!markdown
+
+### Passing variables as parameters
+
+#!csharp
+
+void Add(int a, int b)
+{
+    Console.WriteLine(a + b);
+}
+
+int x = 5;
+int y = 10;
+Add(x, y);
+
+#!markdown
+
+## Returning values from a function
+
+When you return a value from a function, you can use the return statement. The return statement is used to return a value from a function. The return statement is followed by the value to be returned. The following example shows a function that returns a value:
+
+#!csharp
+
+int Add(int a, int b)
+{
+    return a + b;
+}
+
+int result = Add(1, 2);
+Console.WriteLine(result);
+
+#!markdown
+
+The return type of function should be of the same type of the value returned by the function. The following example shows a function that returns a value of type string and accepts parameters as integer.
+
+#!csharp
+
+string Add(int a, int b)
+{
+    return (a + b).ToString();
+}
+
+string result = Add(1, 2);
+Console.WriteLine(result);
+
+#!markdown
+
+If you use a wrong return type, the compiler will throw an error. The following function will throw an error because the return type is string but the function returns an int.
+
+#!csharp
+
+string GetName(){
+    return 10; // Error
+}
+
+#!markdown
+
+## Optional parameters
+
+In the following example, name and email are required parameters.
+
+#!csharp
+
+void ShowData(string name, string email)
+{
+    Console.WriteLine("Name: " + name);
+    Console.WriteLine("Email: " + email);
+}
+
+ShowData("John", "john@mail.com");
+ShowData("John"); // Error - Missing argument
+
+#!markdown
+
+In this example, name is a required parameter and email is an optional parameter. We marked the email parameter as optional by assigning a default value to it.
+
+#!csharp
+
+void ShowData(string name, string email = null)
+{
+    Console.WriteLine("Name: " + name);
+    Console.WriteLine("Email: " + email);
+}
+
+//ShowData("John", "john@mail.com");
+ShowData("John"); // Email is optional.
+
+#!markdown
+
+### Default Parameter Values
+
+#!csharp
+
+void ShowData(string name, string email = "me@example.com")
+{
+    Console.WriteLine("Name: " + name);
+    Console.WriteLine("Email: " + email);
+}
+
+ShowData("John", "john@mail.com");
+ShowData("Jane"); // Email is optional. The default value me@example.com is used.
+
+#!markdown
+
+## Optional parameters should appear at the end
+
+#!markdown
+
+In the following name, and phone are required parameters. The email parameter is optional. The following code will throw an error because the optional parameter email appears before the required parameter phone.
+
+#!csharp
+
+void ShowData(string name, string email = "me@example.com", string phone)
+{
+    Console.WriteLine("Name: " + name);
+    Console.WriteLine("Email: " + email);
+    Console.WriteLine("Phone: " + phone);
+}
+
+#!markdown
+
+For this reason, optional parameters should appear at the end of the parameter list.
+
+#!csharp
+
+void DisplayData(string name, string phone, string email = "me@example.com")
+{
+    Console.WriteLine("Name: " + name);
+    Console.WriteLine("Email: " + email);
+    Console.WriteLine("Phone: " + phone);
+}
+
+DisplayData("John", "555-1234");
+
+#!markdown
+
+> First, write all required parameters, then write all optional parameters.
+
+#!markdown
+
+## Named Parameters
+
+#!markdown
+
+In C#, you can pass parameters to a method by name. This is called named parameters.
+
+#!csharp
+
+void DisplayUserData(string name, string email = null, string phone = null)
+{
+    Console.WriteLine("Name: " + name);
+    Console.WriteLine("Email: " + email);
+    Console.WriteLine("Phone: " + phone);
+}
+
+DisplayUserData("John", "555-6666");
+
+#!markdown
+
+In this example, we are trying to call the `DisplayUserData()` method by passing the parameters name and phone. But, as the second parameter is email, the compiler will assume that the second parameter passed is an email. To avoid this, we can use named parameters.
+
+#!csharp
+
+void DisplayUserData(string name, string email = null, string phone = null)
+{
+    Console.WriteLine("Name: " + name);
+    Console.WriteLine("Email: " + email);
+    Console.WriteLine("Phone: " + phone);
+}
+
+DisplayUserData("John", phone: "555-6666");
