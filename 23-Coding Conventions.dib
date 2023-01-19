@@ -1,0 +1,212 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Coding Conventions
+
+## Introduction
+
+Coding conventions are a set of rules that define how to write code. They are important because they make code easier to read and understand. They also make code easier to maintain and modify.
+
+#!markdown
+
+## Comments
+
+Comments are used to explain code. They are not executed by the computer. They are used to make code easier to understand.
+
+- Use comments to explain code.
+- Never use patterns to design the comment section.
+
+The following comment is invalid.
+
+#!csharp
+
+//***********************************//
+// This is a comment section.        //
+//***********************************//
+
+#!markdown
+
+### Single-line comments
+- Use // to start a single-line comment.
+- Use a space after //.
+- Use a capital letter to start a comment.
+- Use a period at the end of a comment.
+
+### Multi-line comments
+- Use /* to start a multi-line comment.
+- Use */ to end a multi-line comment.
+- Use a space after /*.
+
+#!markdown
+
+- ✅ `// This is a comment.` - Valid comment.
+- ❌ `//This is a comment.` - Space missing after //.
+- ❌ `//this is a comment.` - Comment should start with a capital letter.
+- ❌ `// This is a comment` - Comments should end with a (.) period.
+
+#!csharp
+
+// This is a comment line.
+
+/* This is a member of a comment block.
+   This is another member of the comment block. */
+
+#!markdown
+
+- Comments should not be written at the end of a line of code.
+
+#!csharp
+
+// Incorrect comment syntax.
+Console.WriteLine("Hello World!"); // Displays a message.
+
+// Correct comment syntax.
+// Displays a message.
+Console.WriteLine("Hello World!");
+
+#!markdown
+
+## Local variables
+
+- Use camelCase to name local variables.
+- Use descriptive names for local variables.
+- Never use spaces or underscores in local variable names.
+
+#!markdown
+
+- ✅ displayMessage
+- ❌ DisplayMessage - Don't use capital letters to start a local variable name.
+- ❌ display_message - Don't use underscores in local variable names.
+- ❌ display message - Don't use spaces in local variable names.
+- ❌ displayMsg - Don't use abbreviations in local variable names.
+
+#!csharp
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string displayMessage = "Hello World!";
+        Console.WriteLine(displayMessage);
+    }
+}
+
+#!markdown
+
+## Class Names
+
+- Use PascalCase to name classes.
+- Use descriptive names for classes.
+- Never use spaces or underscores in class names.
+- Never use abbreviations in class names.
+
+#!markdown
+
+- ✅ `class HomeController { }` - Valid class name.
+- ❌ `class homeController { }` - Class name should follow pascal casing.
+- ❌ `class home_controller { }` - Don't use underscores in class names.
+- ❌ `class home controller { }` - Don't use spaces in class names.
+- ❌ `class HomeCtrl { }` - Don't use abbreviations in class names.
+
+#!csharp
+
+class Calculator
+{
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+}
+
+#!markdown
+
+## Public Members
+
+- Use PascalCase to name public members.
+- Use descriptive names for public members.
+
+#!csharp
+
+class Employee
+{
+    // ✅ Correct
+    public string Name { get; set; }
+    public string Department { get; set; }
+
+    // ❌ Incorrect
+    public int salary { get; set; }
+
+    // ✅ Correct
+    public void Display()
+    {
+        Console.WriteLine("Name: {0}", Name);
+        Console.WriteLine("Department: {0}", Department);
+        Console.WriteLine("Salary: {0}", salary);
+    }
+
+    // ❌ Incorrect
+    public void display()
+    {
+        Console.WriteLine("Name: {0}", Name);
+        Console.WriteLine("Department: {0}", Department);
+        Console.WriteLine("Salary: {0}", salary);
+    }
+}
+
+#!markdown
+
+## Private Members
+
+- Use _camelCase to name private members.
+
+#!csharp
+
+class Student
+{
+    public string Name { get; set; }
+    public string Department { get; set; }
+
+    // ✅ Correct. The underscore is used to indicate that the field is private.
+    private string _extraMarks;
+
+    // ❌ Incorrect. The underscore is not used to indicate that the field is private.
+    private string extraMarks;
+
+    public void Display()
+    {
+        Console.WriteLine("Name: {0}", Name);
+        Console.WriteLine("Department: {0}", Department);
+        Console.WriteLine("Extra Marks: {0}", _extraMarks);
+    }
+}
+
+#!markdown
+
+## Var Keyword
+
+- Use var keyword only when the type of the variable is obvious from the right side of the assignment.
+- Use explicit types for all other cases.
+- Never use var keyword for function arguments.
+
+#!csharp
+
+// ✅ Correct
+var i = 10;
+
+// ❌ Incorrect
+var j = Console.ReadLine();
+
+// ✅ Correct
+foreach (char item in "hello")
+{
+    Console.WriteLine(item);
+}
+
+// ❌ Incorrect
+foreach (var item in "hello")
+{
+    Console.WriteLine(item);
+}
