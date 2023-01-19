@@ -1,0 +1,194 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Date And Time
+
+In C#, to store date and time, we have a few types:
+- DateTime
+- DateOnly
+- TimeOnly
+- TimeSpan
+
+#!markdown
+
+## Getting the current date and time
+
+#!csharp
+
+DateTime dt = DateTime.Now;
+Console.WriteLine(dt);
+
+#!markdown
+
+The output format of date and time is different in different cultures. Therefore, we should format the date and time according to the current culture.
+
+#!csharp
+
+DateTime dt = DateTime.Now;
+Console.WriteLine(dt.ToString("yyyy-MM-dd HH:mm:ss"));
+Console.WriteLine(dt.ToString("yyyy/MM/dd HH:mm:ss"));
+
+#!markdown
+
+## Getting Universal Time (UTC)
+
+Universal Time (UTC) is the time standard that is used by the world. It is also known as Coordinated Universal Time (UTC). It is the same as Greenwich Mean Time (GMT).
+
+#!csharp
+
+DateTime dt = DateTime.UtcNow;
+Console.WriteLine(dt.ToString("yyyy-MM-dd HH:mm:ss"));
+
+#!markdown
+
+## Creating a DateTime object
+
+#!markdown
+
+We can manually create a DateTime object by passing the year, month, day, hour, minute, second to the constructor.
+
+#!csharp
+
+DateTime dt = new DateTime(2019, 12, 31, 0, 0, 0);
+Console.WriteLine(dt.ToString("yyyy-MM-dd HH:mm:ss"));
+
+#!markdown
+
+## Parsing a string to DateTime
+
+#!csharp
+
+string str = "2019-12-31 00:00:00";
+DateTime dt = DateTime.Parse(str);
+Console.WriteLine(dt.ToString("yyyy-MM-dd HH:mm:ss"));
+
+#!markdown
+
+## Parsing values from DateTime
+
+#!csharp
+
+DateTime dt = DateTime.Now;
+Console.WriteLine(dt.ToString("yyyy-MM-dd HH:mm:ss"));
+
+Console.WriteLine($"Year: {dt.Year}");
+Console.WriteLine($"Month: {dt.Month}");
+Console.WriteLine($"Day: {dt.Day}");
+
+Console.WriteLine($"Hour: {dt.Hour}");
+Console.WriteLine($"Minute: {dt.Minute}");
+Console.WriteLine($"Second: {dt.Second}");
+
+Console.WriteLine($"Day of Week: {dt.DayOfWeek}");
+
+#!markdown
+
+## TimeSpan
+
+TimeSpan is a structure that represents a time interval. It is used to calculate the difference between two DateTime objects.
+
+#!csharp
+
+// Timespan that represents 0 days, 0 hours, 0 minutes, 0 seconds, 0 milliseconds
+TimeSpan ts = new TimeSpan();
+Console.WriteLine(ts);
+
+// Timespan that represents 1 hour, 30 minutes, 15 seconds
+TimeSpan ts1 = new TimeSpan(1, 30, 15);
+Console.WriteLine(ts1);
+
+// Timespan that represents 1 day, 1 hour, 30 minutes, 15 seconds
+TimeSpan ts2 = new TimeSpan(1, 1, 30, 15);
+Console.WriteLine(ts2);
+
+#!markdown
+
+### Creating TimeSpan Using Methods
+
+#!csharp
+
+var tsDefault = TimeSpan.Zero;
+Console.WriteLine("Time Span Zero: " + tsDefault);
+
+var ts1 = TimeSpan.FromHours(1);
+Console.WriteLine("Time Span From Hours: " + ts1);
+
+var ts2 = TimeSpan.FromMinutes(30);
+Console.WriteLine("Time Span From Minutes: " + ts2);
+
+var ts3 = TimeSpan.FromSeconds(15);
+Console.WriteLine("Time Span From Seconds: " + ts3);
+
+var ts4 = TimeSpan.FromMilliseconds(500);
+Console.WriteLine("Time Span From Milliseconds: " + ts4);
+
+var ts5 = TimeSpan.FromDays(1);
+Console.WriteLine("Time Span From Days: " + ts5);
+
+#!markdown
+
+## Adding a timeSpan To Date
+
+#!csharp
+
+var date = DateTime.Now;
+Console.WriteLine("Date: " + date);
+
+// Add 1 Hour
+var date1 = date.AddHours(1);
+Console.WriteLine("Date Add Hours: " + date1);
+
+#!csharp
+
+DateTime dt = DateTime.Now;
+Console.WriteLine(dt);
+
+dt = dt + TimeSpan.FromHours(1);
+Console.WriteLine(dt);
+
+#!markdown
+
+## Finding Difference Between Two Dates
+
+#!csharp
+
+var dt1 = new DateTime(2019, 12, 31, 0, 0, 0);
+var dt2 = new DateTime(2020, 12, 31, 1, 30, 15);
+
+TimeSpan ts = dt2 - dt1;
+Console.WriteLine($"TimeSpan: {ts}");
+
+Console.WriteLine($"Total Days: {ts.TotalDays}");
+Console.WriteLine($"Total Hours: {ts.TotalHours}");
+Console.WriteLine($"Total Minutes: {ts.TotalMinutes}");
+Console.WriteLine($"Total Seconds: {ts.TotalSeconds}");
+
+Console.WriteLine($"Days: {ts.Days}");
+Console.WriteLine($"Hours: {ts.Hours}");
+Console.WriteLine($"Minutes: {ts.Minutes}");
+Console.WriteLine($"Seconds: {ts.Seconds}");
+
+#!markdown
+
+## DateOnly
+
+DateOnly is a structure that represents a date. It is used to store only the date part of a DateTime object.
+
+#!csharp
+
+DateOnly date = new DateOnly(2020, 12, 31);
+Console.WriteLine(date);
+
+#!markdown
+
+## TimeOnly
+
+TimeOnly is a structure that represents a time. It is used to store only the time part of a DateTime object.
+
+#!csharp
+
+TimeOnly time = new TimeOnly(1, 30, 15);
+Console.WriteLine(time);

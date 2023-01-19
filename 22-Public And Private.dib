@@ -1,0 +1,73 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Public And Private Access Specifiers
+
+## What is an Access Specifier?
+
+An access specifier is a keyword that is used to specify the access level of a class member. The access specifiers in C# are public, private, protected, internal, protected internal, and private protected.
+
+## Public Access Specifiers
+
+The public access specifier is the most permissive access level. Members declared with the public access specifier can be accessed from any other code in the same assembly or another assembly that references it.
+
+## Private Access Specifiers
+
+The private access specifier is the least permissive access level. Members declared with the private access specifier can only be accessed from within the same class or struct.
+
+#!markdown
+
+## Public Access Specifiers
+
+In the following example, `name`, `age` and `Display()` method is marked as public. So, they can be accessed from any other code in the same assembly or another assembly that references it. 
+
+The public properties can be accessed:
+- Within the class (Line 8).
+- Outside the class (Line 13 and 14).
+
+#!csharp
+
+class Person
+{
+    public string Name;
+
+    public string Age;
+
+    public void Display(){
+        Console.WriteLine("Name: {0}, Age: {1}", Name, Age);
+    }
+}
+
+var p = new Person();
+p.Name = "John";
+p.Age = "20";
+p.Display();
+
+#!markdown
+
+## Private Access Specifiers
+
+In the following example, `name`, `age` method is marked as private. So, they can only be accessed from within the same class or struct.
+
+#!csharp
+
+class Employee
+{
+    public string Name;
+
+    // Coding Convention: Private members should start with an underscore.
+    private int Age;
+
+    public void Display(){
+        // Access to private members is allowed within the class.
+        Console.WriteLine("Name: {0}, Age: {1}", Name, Age);
+    }
+}
+
+var p = new Employee();
+p.Name = "John";
+// p.Age = "20"; // Access to the private member is denied
+p.Display();
