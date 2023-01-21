@@ -1,0 +1,68 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Single-Line Functions (Arrow Functions)
+
+An arrow function in C# is a function that is defined on a single line. The syntax for an arrow function is:
+
+`[access modifier] [return type] [function name]([parameters]) => [expression];`
+
+Usually, a function is written as follows:
+
+#!csharp
+
+void Greet()
+{
+    Console.WriteLine("Hello World!");
+}
+
+Greet();
+
+#!markdown
+
+The above function has only a single line of code to execute. This can be written as an arrow function as follows:
+
+#!csharp
+
+void Greet() => Console.WriteLine("Hello World!");
+Greet();
+
+#!markdown
+
+The only difference between the two functions is that the arrow function is defined on a single line. The arrow function is also called a lambda function in other programming languages.
+
+In arrow functions, the `{` and `}` are optional. They are replaced by `=>`.
+
+#!markdown
+
+## Return Keyword is Optional
+
+In arrow functions, the `return` keyword is optional. If the function has a single line of code, the `return` keyword is optional. If the function has multiple lines of code, the `return` keyword is mandatory. Let us see an example.
+
+#!csharp
+
+// A normal function to add two numbers and return the result.
+int Add(int x, int y)
+{
+    return x + y;
+}
+
+var result = Add(3, 4);
+Console.WriteLine(result);
+
+#!markdown
+
+The same function can be written as follows using the arrow function syntax:
+
+#!csharp
+
+int Add(int x, int y) => x + y;
+var result = Add(3, 4);
+Console.WriteLine(result);
+
+#!markdown
+
+Note that the `return` keyword is not used in the arrow function. This is because the function has only a single line of code.
