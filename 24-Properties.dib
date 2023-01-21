@@ -1,0 +1,242 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Properties
+
+In C#,a property is a member that provides a flexible mechanism to read, write, or compute the value of a private field. Properties can be used as if they are public data members, but they are actually special methods called accessors.
+
+## What is a field?
+
+A field is a variable that is associated with a class or struct. Fields are declared inside a class or struct but outside of any method. Fields are declared using the following syntax:
+
+```csharp
+class MyClass
+{
+    int myField;
+}
+```
+
+## What is a property?
+
+A property is a member that provides a flexible mechanism to read, write, or compute the value of a private field. Properties can be used as if they are public data members, but they are actually special methods called accessors. The methods that implement a property are called get and set accessors. The get accessor returns the value of the private field, and the set accessor assigns a new value to the private field.
+
+## Properties Vs Fields
+
+Properties are similar to fields, but they have additional features. Properties can be used as if they are public data members, but they are actually special methods called accessors. The methods that implement a property are called get and set accessors. The get accessor returns the value of the private field, and the set accessor assigns a new value to the private field.
+
+#!markdown
+
+## A Class With Fields
+
+#!csharp
+
+class Employee
+{
+    public string Name;
+
+    public string Email;
+
+    public int Age;
+}
+
+#!markdown
+
+## Class with properties
+
+Now, let us rewrite the class with properties. The following example shows how to declare a class with properties.
+
+#!csharp
+
+class Employee
+{
+    public string Name { get; set; }
+
+    public string Email { get; set; }
+
+    public int Age { get; set; }
+}
+
+#!markdown
+
+You might be wondering why we need properties when we can use fields. The answer is that properties provide additional features that fields do not. 
+
+For example, properties can validate data before assigning it to a field. Properties can also perform some other operations, such as encrypting data, before assigning it to a field.
+
+Let us see an example. In the following example, we have a class named Person. The class has two properties, Name and Age. The Name property is a string type, and the Age property is an integer type.
+
+#!csharp
+
+class Person
+{
+    public string Name;
+
+    public int Age;
+}
+
+#!markdown
+
+Let us create two instances of the class and assign some values to both the fields.
+
+#!csharp
+
+var person1 = new Person { Name = "John", Age = 25 };
+var person2 = new Person { Name = "John", Age = 250 };
+var person3 = new Person { Name = "John", Age = -250 };
+
+#!markdown
+
+Have you noticed any problem in the above code? The problem is that we can assign any value to the Age property. We can assign a negative value or a large value to the Age property. This is not correct. The Age property should not accept negative values. Let us see how we can fix this problem.
+
+The first thing we have to do is to mark the age field as private. This is because we do not want to expose the age field to the outside world. We want to validate the age before assigning it to the age field. 
+
+As we are not using properties, we have to write a separate method to validate the age. The following example shows how to write a method to validate the age.
+
+#!csharp
+
+class Person
+{
+    public string Name;
+
+    private int _age;
+
+    // Returns the age of the person.
+    public int GetAge()
+    {
+        return _age;
+    }
+
+    // Sets the age of the person after validating it.
+    public void SetAge(int value)
+    {
+        if (value < 0 || value > 120)
+        {
+            throw new ArgumentException("Invalid");
+        }
+        _age = value;
+    }
+}
+
+var person = new Person { Name = "John"};
+person.SetAge(25); // ✅ OK
+// person.SetAge(250); // ❌ Throws an exception
+// person.SetAge(-250); // ❌ Throws an exception
+
+#!markdown
+
+Now, we are able to validate the age before assigning it to the age field. But there are a few problems with this approach. 
+
+- 👉 First, we have to write a separate method to validate the age. 
+- 👉 Second, we have to call the method from the set accessor of the Age property.
+
+If we have 10 fields with validation, we have to write 20 methods to get and set values of the fields. This is not a good approach. Let us solve the problem with properties.
+
+#!markdown
+
+## Solving the problem with properties
+
+#!csharp
+
+class Person
+{
+    public string Name{ get; set; }
+
+    private int _age;
+
+    public int Age
+    {
+        get
+        {
+            return _age;
+        }
+        set
+        {
+            if (value < 0 || value > 120)
+            {
+                throw new ArgumentException("Invalid");
+            }
+            _age = value;
+        }
+    }
+}
+
+// Note that we don't have to call the SetAge method anymore.
+var person = new Person { Name = "John", Age = 25 }; // ✅ OK
+// person.SetAge(250); // ❌ Throws an exception
+// person.SetAge(-250); // ❌ Throws an exception
+
+#!markdown
+
+## Making A Property Read-Only
+
+Making a property read-only is very simple. We have to remove the `set` accessor from the property. The following example shows how to make a property read-only.
+
+#!csharp
+
+class Student
+{
+    public string Name { get; set; }
+
+    public int Age { get; set; }
+
+    public string Email { get; set; }
+
+    // Readonly property
+    public string SchoolName { get; } = "My School";
+}
+
+var student = new Student { Name = "John", Age = 25, Email = "student@mail.com" };
+Console.WriteLine(student.SchoolName); // My School
+
+//student.SchoolName = "New School"; // ❌ Throws an exception
+
+#!markdown
+
+## Properties to compute values
+
+Properties can also be used to compute values. The following example shows how to use properties to compute values.
+
+#!csharp
+
+class Student
+{
+    public string Name { get; set; }
+
+    public int Mark1 { get; set; }
+
+    public int Mark2 { get; set; }
+
+    // A computed readonly property.
+    public int TotalMark{
+        get
+        {
+            return Mark1 + Mark2;
+        }
+    }
+}
+
+var student = new Student { Name = "John", Mark1 = 40, Mark2 = 45 };
+Console.WriteLine(student.TotalMark); // 85
+
+#!markdown
+
+The above code can be rewritten as follows.
+
+#!csharp
+
+class Student
+{
+    public string Name { get; set; }
+
+    public int Mark1 { get; set; }
+
+    public int Mark2 { get; set; }
+
+    // A computed readonly property. We'll learn more about this syntax later.
+    public int TotalMark => Mark1 + Mark2;
+}
+
+var student = new Student { Name = "John", Mark1 = 40, Mark2 = 45 };
+Console.WriteLine(student.TotalMark); // 85

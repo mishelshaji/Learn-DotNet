@@ -77,7 +77,7 @@ Console.WriteLine("Hello World!");
 
 #!markdown
 
-- ✅ displayMessage
+- ✅ displayMessage - Correct.
 - ❌ DisplayMessage - Don't use capital letters to start a local variable name.
 - ❌ display_message - Don't use underscores in local variable names.
 - ❌ display message - Don't use spaces in local variable names.
