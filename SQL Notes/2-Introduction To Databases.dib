@@ -1,0 +1,111 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Introduction To Database
+
+A database is a collection of information that is organized so that it can be easily accessed, managed and updated.
+
+## Important Terms
+
+Before getting into the details of database, let's understand some important terms.
+
+### 1) Database
+
+A database is a collection of information that is organized so that it can be easily accessed, managed and updated.
+
+### 2) Database Management System (DBMS)
+
+A DBMS is a software that allows users to create and manage a database. It provides a way to store, modify, extract and report data in a database.
+
+### 3) Relational Database Management System (RDBMS)
+
+A relational database is a collection of data items organized as a set of tables. Each table has a unique name and is referred to as a relation. A relation is a set of tuples, and each tuple is a set of attributes. A tuple is a row in a table, and an attribute is a column in a table. A relational database management system (RDBMS) is a DBMS that allows users to create and manage a relational database.
+
+### 4) Table
+
+A table is a collection of related data held in a table format within a database. It consists of columns and rows.
+
+### 5) Records
+
+A record is a group of related fields in a table. A record corresponds to a row in a table.
+
+### 6) Fields
+
+A field is a single piece of information that is stored in a table. A field corresponds to a column in a table.
+
+### 7) SQL
+
+SQL stands for Structured Query Language. It is a language used to communicate with a database. SQL statements are used to perform tasks such as update data on a database, or retrieve data from a database.
+
+### 8) Schema
+
+A schema is a logical collection of database objects. It is a blueprint of how the database is constructed. It defines how the data is organized and how the relations among them are associated.
+
+## Relational Databases VS Non-Relational Databases
+
+### Relational Databases
+
+A relational database is a collection of data items organized as a set of tables. Each table has a unique name and is referred to as a relation. A relation is a set of tuples, and each tuple is a set of attributes. A tuple is a row in a table, and an attribute is a column in a table. A relational database management system (RDBMS) is a DBMS that allows users to create and manage a relational database.
+
+### Non-Relational Databases
+
+A non-relational database is a database that does not use the relational model. It is a database that stores and retrieves data without having to define its structure first. It is also known as a NoSQL database.
+
+## Popular RDBMS
+
+### 1) MySQL
+
+MySQL is an open-source relational database management system (RDBMS). It is a very popular database management system. It is used in many web applications. It is developed, distributed, and supported by Oracle Corporation. It is written in C and C++. It is available for many platforms, including Linux, Windows, and Mac OS X.
+
+Many web applications use MySQL as their database. Some of the popular web applications that use MySQL are WordPress, Joomla, Drupal, and many more. Twitter also uses MySQL as their database.
+
+### 2) PostgreSQL
+
+PostgreSQL is an open-source relational database management system (RDBMS). It is used in many web applications. It is developed, distributed, and supported by the PostgreSQL Global Development Group. It is written in C and C++. It is available for many platforms, including Linux, Windows, and Mac OS X.
+
+### 3) Microsoft SQL Server
+
+Microsoft SQL Server is a relational database management system (RDBMS) developed by Microsoft. It is used in many web applications. It is developed, distributed, and supported by Microsoft. It is written in C and C++. It is available for many platforms, including Linux, Windows, and Mac OS X. It is also available as a cloud-based service.
+
+Websites like Stack Overflow, Microsoft, and many more use Microsoft SQL Server as their database.
+
+### 4) Oracle Database
+
+Oracle Database is a relational database management system (RDBMS) developed by Oracle Corporation. It is used in many web applications. It is developed, distributed, and supported by Oracle Corporation. 
+
+### 5) IBM DB2
+
+IBM DB2 is a relational database management system (RDBMS) developed by IBM. It is used in many web applications. It is developed, distributed, and supported by IBM. This database is not as popular as other databases.
+
+### 6) MariaDB
+
+MariaDB is an open-source relational database management system (RDBMS). It is developed, distributed, and supported by MariaDB Foundation. It is written in C and C++. It is available for many platforms, including Linux, Windows, and Mac OS X. It is a fork of MySQL. It is a drop-in replacement for MySQL.
+
+WikiMedia, Wikipedia, and many more use MariaDB as their database.
+
+### 7) SQLite
+
+SQLite is a lightweight relational database management system (RDBMS). It is mainly used in embedded systems and mobile applications. Unlike other RDBMS, SQLite does not have a separate server process.
+
+Several popular web applications use SQLite as their database. Some of them are Firefox, Google Chrome, and many more.
+
+## Popular NoSQL Databases
+
+### 1) MongoDB
+
+MongoDB is a document-oriented database. It is a NoSQL database. It is developed, distributed, and supported by MongoDB Inc. It is written in C++. It is available for many platforms, including Linux, Windows, and Mac OS X. It is also available as a cloud-based service. MongoDb stores data in JSON-like documents, which makes the database very flexible and scalable.
+
+### 2) Redis
+
+Redis is an open-source in-memory data structure store. It is a NoSQL database. Redis is mainly used as a database, cache, and message broker. It is developed, distributed, and supported by Redis Labs. 
+
+### 3) Cassandra
+
+Cassandra is a distributed database management system (DBMS) designed to handle large amounts of data across many commodity servers, providing high availability with no single point of failure. It is a NoSQL database. It is developed, distributed, and supported by Apache Software Foundation. It is written in Java. It is available for many platforms, including Linux, Windows, and Mac OS X.
+
+### 4) CouchDB
+
+CouchDB is a document-oriented database. It is a NoSQL database. It is developed, distributed, and supported by Apache Software Foundation. It is written in Erlang. It is available for many platforms, including Linux, Windows, and Mac OS X.
