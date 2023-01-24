@@ -1,0 +1,66 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# What is HTML?
+
+HTML stands for Hyper Text Markup Language. HTML is the standard markup language for creating Web pages. HTML describes the structure of a Web page. HTML consists of a series of elements. HTML elements tell the browser how to display the content.
+
+An HTML page is wrapped in the `html` tag.
+
+## Writing a Tag
+
+Most tags in HTML has a start tag and an end tag. The start tag is the name of the element wrapped in angle brackets. The end tag is the same as the start tag, but with a forward slash before the element name. The content of the element is placed between the start and end tags.
+
+```html
+<tag>content</tag>
+```
+
+Some tags do not have a closing tag. These tags are called empty elements. The content of the element is placed between the start tag and the end tag.
+
+```html
+<tag />
+```
+
+## HTML Document
+
+The HTML document is wrapped in the `html` tag. The `html` tag contains the `head` and `body` tags.
+
+Following is an example of a simple HTML document.
+
+#!html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+</head>
+<body>
+    <p>Hello World!</p>
+</body>
+</html>
+
+#!markdown
+
+## Explaining the tags
+
+### `<!DOCTYPE html>`
+The `<!DOCTYPE html>` declaration defines this document to be HTML5.
+
+### `<html>`
+The `<html>` element is the root element of an HTML page. The `<html>` element contains the `<head>` and `<body>` elements.
+
+### `<head>`
+The `<head>` element is a container for all the head elements, including a title for the document, scripts, styles, meta information, and more.
+
+### `<title>`
+The `<title>` element specifies a title for the document. The title is shown in the browser's title bar or in the page's tab.
+
+### `<body>`
+The `<body>` element contains the visible page content. The content of the `<body>` element is displayed in the browser window. The `<body>` element can contain text, images, hyperlinks, tables, lists, etc.
+
+### `<meta charset="UTF-8">`
+This tag is used to define the character encoding for the HTML document. The character encoding declaration must be the first thing in your HTML document. The default character encoding is ISO-8859-1 (Latin-1). If you do not include the character encoding declaration, the browser will use the default character encoding. The character encoding declaration is not case sensitive.

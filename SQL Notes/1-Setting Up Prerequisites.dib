@@ -1,0 +1,33 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Readme
+
+Before you can start using the SQL Notes, you need to set up a few things. This document will guide you through the process. 
+
+Before you start, make sure you have the following:
+- Microsoft SQL Server Management Studio (SSMS) installed.
+- A SQL Server instance running.
+- A database created on the SQL Server instance in the name `DotNetInteractive`.
+- Internet Connection.
+- Click `Run All` button at the top of this page to run all the code cells in this notebook.
+
+#!csharp
+
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer,*-*"
+
+#!csharp
+
+#!sql -h
+
+#!csharp
+
+#!connect mssql --kernel-name DotNetInteractive "Persist Security Info=False; Integrated Security=true; Initial Catalog=DotNetInteractive; Server=localhost"
+
+#!sql
+
+#!sql-DotNetInteractive
+SELECT * FROM sys.tables
