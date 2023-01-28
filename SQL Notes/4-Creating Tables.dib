@@ -59,3 +59,15 @@ CREATE TABLE Customers
 #!markdown
 
 > 💡 The table created now is not a good example of a table that would be used in a real database. It is just an example to show you how to create a table.
+
+#!markdown
+
+## Deleting Tables
+
+To delete a table, you use the DROP TABLE statement.
+
+#!sql
+
+#!sql-DotNetInteractive
+
+DROP TABLE Customers
