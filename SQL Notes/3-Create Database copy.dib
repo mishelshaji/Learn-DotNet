@@ -1,0 +1,76 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!csharp
+
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer,*-*"
+
+#!csharp
+
+#!connect mssql --kernel-name DotNetInteractive "Persist Security Info=False; Integrated Security=true; Initial Catalog=DotNetInteractive; Server=localhost"
+
+#!markdown
+
+# Database
+
+A database is a collection of information that is organized so that it can be easily accessed, managed and updated. Databases are used to store and retrieve related information. They are used across a wide range of industries, including education, healthcare, government, and business. 
+
+## Creating a Database
+
+A database can be created using the `CREATE` command. The syntax for the `CREATE` command is as follows:
+
+```sql
+CREATE DATABASE database_name;
+```
+
+#!sql
+
+#!sql-DotNetInteractive
+
+CREATE DATABASE MyTestDb;
+
+#!markdown
+
+If you run the same command again, you will get an error. This is because the database already exists. To avoid this error, you can use the `IF NOT EXISTS` clause. The syntax for the `CREATE` command with the `IF NOT EXISTS` clause is as follows:
+
+#!sql
+
+#!sql-DotNetInteractive
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'MyTestDb')
+BEGIN
+  CREATE DATABASE MyTestDb;
+END;
+GO
+
+#!markdown
+
+## Syntax for MySQL
+
+#!markdown
+
+In `MySQL`, we can use the following command to create a database only if it does not exist:
+
+#!sql
+
+#!sql-DotNetInteractive
+CREATE DATABASE ID NOT EXISTS `MyTestDb`;
+
+#!markdown
+
+## Switching The Database
+
+To switch to a database, we can use the `USE` command. The syntax for the `USE` command is as follows:
+
+```sql
+USE database_name;
+```
+
+#!sql
+
+#!sql-DotNetInteractive
+USE MyTestDb;
+
+#!markdown
+
+After switching to a database, you can run queries on the tables in that database. If you don't switch to a database, you will get an error when you try to run queries on tables.

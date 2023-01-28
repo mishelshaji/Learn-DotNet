@@ -1,0 +1,221 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Delegates
+
+Delegate is a special type of object that can be used to store a reference to a function. Delegates are used to pass functions as arguments to other functions. Delegates are declared using the delegate keyword. The following example shows how to declare a delegate:
+
+#!csharp
+
+delegate void GreetDelegate();
+
+#!markdown
+
+In the above example, the delegate is with `void` return type and no parameters. The delegate can be used to store a reference to a function that has the same signature as the delegate. The following example shows how to use this delegate:
+
+#!csharp
+
+void SayHi()
+{
+    Console.WriteLine("Hi");
+}
+
+GreetDelegate greet = SayHi;
+greet();
+
+delegate void GreetDelegate();
+
+#!markdown
+
+In this example, we have a function called `SayHi` that has the same signature as the delegate. By same signature, we mean that the function has the same return type and parameters as the delegate.
+
+Here, `GreetDelegate` acts as a type. If you don't understand this, think of it as a basic type like int or string. You can use this type to declare variables.
+
+#!csharp
+
+void SayHi()
+{
+    Console.WriteLine("Hi");
+}
+
+// GreetDelegate is the type. greet is the variable name.
+GreetDelegate greet = SayHi;
+greet();
+
+// String is the type. name is the variable name.
+string name = "John";
+
+delegate void GreetDelegate();
+
+#!markdown
+
+## Another example
+
+Let us see another example that holds reference to functions with parameters and return types.
+
+#!csharp
+
+int Add(int  x, int  y)
+{
+    return x + y;
+}
+
+Calculate calc = Add;
+int result = calc(3, 4);
+Console.WriteLine(result);
+
+// Declaring a delegate that can hold a method that takes two integers and returns an integer.
+delegate int Calculate(int x, int y);
+
+#!markdown
+
+## Singlecast delegate
+
+A singlecast delegate is a delegate that holds reference to a single function. The following example shows how to declare and use a singlecast delegate:
+
+#!csharp
+
+void Add(int  x, int  y)
+{
+    Console.WriteLine(x + y);
+}
+
+Calculate calc = Add;
+calc(3, 4);
+
+delegate void Calculate(int x, int y);
+
+#!markdown
+
+## Multicast delegate
+
+A multicast delegate is a delegate that holds reference to multiple functions. The following example shows how to declare and use a multicast delegate:
+
+#!csharp
+
+void Add(int x, int  y)
+{
+    Console.WriteLine($"Addition: {x + y}");
+}
+
+void Subtract(int x, int  y)
+{
+    Console.WriteLine($"Subtraction: {x - y}");
+}
+
+Calculate calc = Add; // Adding first method to the delegate.
+calc += Subtract; // Adding second method to the delegate.
+calc(3, 4); // Calling the delegate. This will call both methods.
+
+delegate void Calculate(int x, int y);
+
+#!markdown
+
+## Generic Delegates
+
+Declaring and using delegates like this is fine, but it is not very flexible. For example, if you want to create a delegate that can hold reference to a function that returns an int and takes a string as a parameter, you will have to create a new delegate type. This is not very flexible. To solve this problem, C# provides generic delegates. 
+
+Generic delegates gives us the ability easily create and use delegates without having to create new delegate types. 
+
+The generic delegates in C# are:
+
+- Action
+- Func
+- Predicate
+
+#!markdown
+
+## Action
+
+The Action delegate is used to hold reference to a function that has no return type and takes up to 16 parameters. The following example shows how to declare and use an Action delegate:
+
+#!csharp
+
+void Add(int x, int  y)
+{
+    Console.WriteLine($"Addition: {x + y}");
+}
+
+// Declaring a delegate that can hold a method that takes two integers and has void return type.
+Action<int, int> calc = Add;
+calc(3, 4);
+
+#!markdown
+
+Here's another example that accepts 3 parameters:
+
+#!csharp
+
+void Add(int x, int  y, long z)
+{
+    Console.WriteLine($"Addition: {x + y + z}");
+}
+
+// Declaring a delegate that can hold a method that takes two integers and a long and has void return type.
+Action<int, int, long> calc = Add;
+calc(3, 4, 5);
+
+#!markdown
+
+## Func
+
+The Func delegate is used to hold reference to a function that has a return type and takes up to 16 parameters. The following example shows how to declare and use a Func delegate:
+
+#!csharp
+
+string Add(int x, int  y)
+{
+    return (x + y).ToString();
+}
+
+// Declaring a delegate that can hold a method that takes two integers and returns a string.
+Func<int, int, string> calc = Add;
+string result = calc(3, 4);
+Console.WriteLine(result);
+
+#!markdown
+
+The last parameter of the Func delegate is the return type of the function. The other parameters are the parameters of the function.
+
+If you want to create a Func delegate that has no parameters, you can use the following syntax:
+
+#!csharp
+
+string GetTime()
+{
+    return DateTime.Now.ToString("dd-MM-yyyy");
+}
+
+// Declaring a delegate that can hold a method that takes no parameters and returns a string.
+Func<string> getTime = GetTime;
+string result = getTime();
+Console.WriteLine(result);
+
+#!markdown
+
+Note that the only type parameter is the return type of the function.
+
+#!markdown
+
+## Predicate
+
+The Predicate delegate is used to hold reference to a function that has a bool return type. The following example shows how to declare and use a Predicate delegate:
+
+#!csharp
+
+bool IsEven(int  x)
+{
+    return x % 2 == 0;
+}
+
+// Declaring a delegate that can hold a method that takes an integer and returns a boolean.
+Predicate<int> isEven = IsEven;
+bool result = isEven(4);
+Console.WriteLine(result);
+
+#!markdown
+
+Unlike the Action and Func delegates, the Predicate delegate can only hold reference to a function that has a bool return type and can accept only a single parameter.

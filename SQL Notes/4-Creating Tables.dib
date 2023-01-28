@@ -1,0 +1,61 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!csharp
+
+#r "nuget:Microsoft.DotNet.Interactive.SqlServer,*-*"
+
+#!csharp
+
+#!connect mssql --kernel-name DotNetInteractive "Persist Security Info=False; Integrated Security=true; Initial Catalog=DotNetInteractive; Server=localhost"
+
+#!markdown
+
+# Tables
+
+In relational databases, tables are the basic unit of data storage. A table is a collection of related data items, or records, and is made up of columns and rows. Each column contains a specific type of data, and each row contains a record of that data. 
+
+For example, a table of customer data might have columns for customer name, address, and phone number, and each row would contain the data for a single customer.
+
+Example
+
+|   Name   | Address  |  Phone   |
+|----------|----------|----------|
+| Row 1    | Row 1    | Row 1    |
+| Row 2    | Row 2    | Row 2    |
+| Row 3    | Row 3    | Row 3    |
+
+In the example above, the table is called "Customers", and the columns are "Name", "Address", and "Phone".
+
+## Creating Tables
+
+To create a table, you use the CREATE TABLE statement. The syntax for this statement is:
+
+```sql
+CREATE TABLE table_name (
+    column_name data_type,
+    column_name data_type,
+    column_name data_type,
+    ...
+);
+```
+
+Here is an example of a CREATE TABLE statement:
+
+#!sql
+
+#!sql-DotNetInteractive
+
+CREATE TABLE Customers
+(
+    Name varchar(255),
+    Email varchar(255),
+    Address varchar(255),
+    City varchar(255),
+    State varchar(255),
+);
+
+#!markdown
+
+> 💡 The table created now is not a good example of a table that would be used in a real database. It is just an example to show you how to create a table.
