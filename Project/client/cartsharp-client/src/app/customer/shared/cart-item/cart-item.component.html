@@ -1,0 +1,24 @@
+<div class="border rounded p-2 mb-4">
+    <div class="row">
+        <div class="col-sm-2 d-flex">
+            <img src="https://picsum.photos/id/{{cartItem.product.id}}/200" alt="..." class="rounded my-auto" height="100" />
+        </div>
+        <div class="col-sm-6">
+            <h5 class="mb-2">{{cartItem.product.name}}</h5>
+            <p class="mb-1">{{cartItem.product.description}}</p>
+            <p class="mb-1 text-info">{{cartItem.product.price | currency:'INR'}}</p>
+        </div>
+        <div class="col-sm-2 d-flex">
+            <div class="btn-group border my-auto">
+                <button class="btn btn-info" data-action="sub" (click)="updateQuantity($event)">-</button>
+                <button class="btn btn-link">{{cartItem.quantity}}</button>
+                <button class="btn btn-warning" data-action="add" (click)="updateQuantity($event)">+</button>
+            </div>
+        </div>
+        <div class="col-sm-2 d-flex">
+            <button class="btn btn-danger my-auto" (click)="deleteItem()">
+                <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+        </div>
+    </div>
+</div>

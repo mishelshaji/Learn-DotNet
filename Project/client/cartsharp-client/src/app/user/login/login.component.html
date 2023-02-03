@@ -1,0 +1,39 @@
+<h1 class="text-center text-info my-4">Login</h1>
+<section></section>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+            <div>
+                <label for="email">Email</label>
+                <input type="email"
+                    name="email"
+                    [(ngModel)]="model.email"
+                    #email="ngModel"
+                    class="form-control"
+                    placeholder="someone@example.com"
+                    required
+                    minlength="5"
+                    maxlength="70"
+                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <div class="text-danger" *ngIf="email.invalid && email.touched">
+                    <div *ngIf="email.errors?.['minlength']">Email is too short.</div>
+                    <div *ngIf="email.errors?.['required']">Email is required.</div>
+                    <div *ngIf="email.errors?.['maxlength']">Email is too long.</div>
+                    <div *ngIf="email.errors?.['pattern']">Email is invalid.</div>
+                </div>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" [(ngModel)]="model.password" #password="ngModel" class="form-control" minlength="6" maxlength="25" required>
+                <div class="text-danger" *ngIf="password.invalid && password.touched">
+                    <div *ngIf="password.errors?.['minlength']">Password is too small.</div>
+                    <div *ngIf="password.errors?.['maxlength']">Password is too long.</div>
+                    <div *ngIf="password.errors?.['required']">Password is required.</div>
+                </div>
+            </div>
+            <div class="d-grid my-3">
+                <button type="submit" class="btn btn-warning" [disabled]="form.invalid">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

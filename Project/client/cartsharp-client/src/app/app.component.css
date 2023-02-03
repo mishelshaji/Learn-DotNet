@@ -1,0 +1,8 @@
+main{
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    min-height: 80vh;
+}
