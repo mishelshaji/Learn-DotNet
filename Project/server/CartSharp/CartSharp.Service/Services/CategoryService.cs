@@ -1,6 +1,7 @@
 ﻿using CartSharp.Domain.Models;
 using CartSharp.Service.Data;
 using CartSharp.Service.Dto;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,23 +19,42 @@ namespace CartSharp.Service.Services
             _db = db;
         }
 
-        public List<CategoryViewDto> GetAll()
+        public async Task<List<CategoryViewDto>> GetAllAsync()
         {
-            return _db.Categories
+            return await _db.Categories
                 .Select(c => new CategoryViewDto
                 {
                     Id = c.Id,
                     Name = c.Name,
                     Description = c.Description
                 })
-                .ToList();
+                .ToListAsync();
             //return _db.Categories.Select(c => new CategoryViewDto(c)).ToList();
         }
 
-        public CategoryViewDto? GetById(int id)
+        public async Task<CategoryViewDto?> GetByIdAsync(int id)
         {
-            Category? category = _db.Categories.Find(id);
+            Category? category = await _db.Categories.FindAsync(id);
             return category == null ? null : new CategoryViewDto
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Description = category.Description
+            };
+        }
+
+        public async Task<CategoryViewDto> CreateAsync(CategoryCreateDto dto)
+        {
+            var category = new Category
+            {
+                Name = dto.Name,
+                Description = dto.Description
+            };
+
+            _db.Categories.Add(category);
+            await _db.SaveChangesAsync();
+
+            return new CategoryViewDto
             {
                 Id = category.Id,
                 Name = category.Name,
