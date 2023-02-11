@@ -9,11 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{B2ECD70B-79DC-44BD-A44A-F6082EB63AA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartSharp.Domain", "CartSharp.Domain\CartSharp.Domain.csproj", "{EF1D9093-792D-46EB-9930-C2D209E1C442}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartSharp.Domain", "CartSharp.Domain\CartSharp.Domain.csproj", "{EF1D9093-792D-46EB-9930-C2D209E1C442}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartSharp.Service", "CartSharp.Service\CartSharp.Service.csproj", "{C94217EA-C0C6-4310-BE78-3EB8E8679963}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartSharp.Service", "CartSharp.Service\CartSharp.Service.csproj", "{C94217EA-C0C6-4310-BE78-3EB8E8679963}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartSharp.WebApp", "CartSharp.WebApp\CartSharp.WebApp.csproj", "{5308E0B6-0776-4852-9089-CFA06EB39FCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartSharp.WebApp", "CartSharp.WebApp\CartSharp.WebApp.csproj", "{5308E0B6-0776-4852-9089-CFA06EB39FCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

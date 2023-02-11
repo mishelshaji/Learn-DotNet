@@ -25,7 +25,7 @@ namespace CartSharp.Domain.Types
         {
             if (!_errors.ContainsKey(key))
             {
-                _errors[key] = new ();
+                _errors[key] = new List<string>();
             }
 
             _errors[key].Add(errorMessage);

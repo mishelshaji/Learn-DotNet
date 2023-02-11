@@ -43,6 +43,7 @@ namespace CartSharp.WebApp.Areas.Admin.Controllers
         public async Task<IActionResult> Put(int id, CategoryCreateDto dto)
         {
             var result = await _service.UpdateAsync(id, dto);
+            
             if (result == null)
                 return NotFound();
 
@@ -50,6 +51,15 @@ namespace CartSharp.WebApp.Areas.Admin.Controllers
                 return BadRequest(result.Errors);
 
             return Ok(result.Result);
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var result = await _service.DeleteAsync(id);
+            return result == null ? NotFound() : Ok();
         }
     }
 }

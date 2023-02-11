@@ -63,22 +63,23 @@ namespace CartSharp.Service.Services
             };
         }
 
-        public async Task<ServiceResponse<CategoryViewDto>> UpdateAsync(int id, CategoryCreateDto dto)
+        public async Task<ServiceResponse<CategoryViewDto>?> UpdateAsync(int id, CategoryCreateDto dto)
         {
             var response = new ServiceResponse<CategoryViewDto>();
 
             // Check if the category exists.
             var category = await _db.Categories.FindAsync(id);
             if (category == null)
-            {
                 return null;
-            }
 
             // Check if any other category has the same name.
             if(await _db.Categories.AnyAsync(m=>m.Name == dto.Name))
             {
                 response.AddError("Name", "A category with the same name already exists.");
             }
+
+            if (!response.IsValid)
+                return response;
 
             category.Name = dto.Name;
             category.Description = dto.Description;
@@ -91,6 +92,20 @@ namespace CartSharp.Service.Services
                 Description = category.Description
             };
             return response;
+        }
+
+        public async Task<ServiceResponse<bool>?> DeleteAsync(int id)
+        {
+            var category = await _db.Categories.FindAsync(id);
+            if (category == null)
+                return null;
+
+            _db.Categories.Remove(category);
+            await _db.SaveChangesAsync();
+            return new ServiceResponse<bool>
+            {
+                Result = true
+            };
         }
     }
 }
