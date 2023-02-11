@@ -1,4 +1,5 @@
 ﻿using CartSharp.Domain.Models;
+using CartSharp.Domain.Types;
 using CartSharp.Service.Data;
 using CartSharp.Service.Dto;
 using Microsoft.EntityFrameworkCore;
@@ -60,6 +61,36 @@ namespace CartSharp.Service.Services
                 Name = category.Name,
                 Description = category.Description
             };
+        }
+
+        public async Task<ServiceResponse<CategoryViewDto>> UpdateAsync(int id, CategoryCreateDto dto)
+        {
+            var response = new ServiceResponse<CategoryViewDto>();
+
+            // Check if the category exists.
+            var category = await _db.Categories.FindAsync(id);
+            if (category == null)
+            {
+                return null;
+            }
+
+            // Check if any other category has the same name.
+            if(await _db.Categories.AnyAsync(m=>m.Name == dto.Name))
+            {
+                response.AddError("Name", "A category with the same name already exists.");
+            }
+
+            category.Name = dto.Name;
+            category.Description = dto.Description;
+            await _db.SaveChangesAsync();
+
+            response.Result = new CategoryViewDto
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Description = category.Description
+            };
+            return response;
         }
     }
 }

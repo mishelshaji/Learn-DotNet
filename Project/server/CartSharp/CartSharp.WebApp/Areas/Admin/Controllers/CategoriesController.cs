@@ -6,7 +6,7 @@ namespace CartSharp.WebApp.Areas.Admin.Controllers
     public class CategoriesController : AdminControllerBase
     {
         private readonly CategoryService _service;
-
+                                    
         public CategoriesController(CategoryService service)
         {
             _service = service;
@@ -30,10 +30,26 @@ namespace CartSharp.WebApp.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(CategoryViewDto), StatusCodes.Status201Created)]
         public async Task<IActionResult> Post(CategoryCreateDto dto)
         {
             var result = await _service.CreateAsync(dto);
             return Ok(result);
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(CategoryViewDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Nullable), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Put(int id, CategoryCreateDto dto)
+        {
+            var result = await _service.UpdateAsync(id, dto);
+            if (result == null)
+                return NotFound();
+
+            if (!result.IsValid)
+                return BadRequest(result.Errors);
+
+            return Ok(result.Result);
         }
     }
 }
