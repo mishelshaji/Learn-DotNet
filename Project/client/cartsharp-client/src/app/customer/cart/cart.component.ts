@@ -1,4 +1,3 @@
-import { CartService } from './../../services/cart.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,21 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-    cartItems:any;
+    cartItems = [];
 
-    constructor(private cartService: CartService) {
-        console.log(this.cartItems)
-        setTimeout(() => {
-            this.cartItems = this.cartService.getAll();
-        }, 5000);
+    constructor() {
+
     }
 
     deleteItem(id: number) {
-        for(let i = 0; i < this.cartItems.length; i++) {
-            if (this.cartItems[i].id === id) {
-                this.cartItems.splice(i, 1);
-                break;
-            }
-        }
+
     }
 }

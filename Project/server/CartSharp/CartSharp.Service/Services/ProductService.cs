@@ -118,5 +118,59 @@ namespace CartSharp.Service.Services
             };
             return result;
         }
+
+        public async Task<ServiceResponse<ProductViewDto>?> UpdateAsync(int id, ProductCreateDto dto)
+        {
+            var result = new ServiceResponse<ProductViewDto>();
+
+            // If the product does not exist, return back to controller.
+            var product = await _db.Products.FindAsync(id);
+            if (product == null)
+                return null;
+
+            // Check if the category exists.
+            if (!await _db.Categories.AnyAsync(m => m.Id == dto.CategoryId))
+                result.AddError(nameof(dto.CategoryId), "Invalid category");
+
+            if (await _db.Products.AnyAsync(m => m.Name == dto.Name && m.Id != id))
+                result.AddError(nameof(dto.Name), "A similar product already exists.");
+
+            if (!result.IsValid)
+                return result;
+
+            product.Name = dto.Name;
+            product.MetaDescription = dto.MetaDescription;
+            product.Description = dto.Description;
+            product.Price = dto.Price;
+            product.CategoryId = dto.CategoryId;
+            product.Stock = dto.Stock;
+
+            await _db.SaveChangesAsync();
+
+            result.Result = new ProductViewDto
+            {
+                Name = product.Name,
+                Description = product.Description,
+                MetaDescription = product.MetaDescription,
+                Price = product.Price,
+                Stock = product.Stock
+            };
+            return result;
+        }
+
+        public async Task<ServiceResponse<bool>> DeleteAsync(int id)
+        {
+            // If the product does not exist, return back to controller.
+            var product = await _db.Products.FindAsync(id);
+            if (product == null)
+                return null;
+
+            _db.Products.Remove(product);
+            await _db.SaveChangesAsync();
+            return new ServiceResponse<bool>
+            {
+                Result = true
+            };
+        }
     }
 }

@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <h1 class="text-center">Edit Category</h1>
+
+    <form #form="ngForm" (ngSubmit)="saveData()">
+        <div>
+            <label for="name">Name</label>
+            <input type="text"
+                name="name"
+                [(ngModel)]="model.name"
+                #name="ngModel"
+                class="form-control"
+                minlength="3"
+                maxlength="25"
+                required>
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <textarea
+                name="description"
+                [(ngModel)]="model.description"
+                #name="ngModel"
+                class="form-control"
+                minlength="3"
+                maxlength="250"
+                required></textarea>
+        </div>
+        <div class="d-flex">
+            <button type="submit"
+            [disabled]="form.invalid"
+            class="btn btn-warning mt-2 ms-auto">Save</button>
+        </div>
+    </form>
+</div>

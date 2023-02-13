@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="card p-3" *ngIf="cartItems?.length > 0">
-        <app-cart-item [item]="item" (delete)="deleteItem($event)" *ngFor="let item of cartItems"></app-cart-item>
+        <!-- <app-cart-item [item]="item" (delete)="deleteItem($event)" *ngFor="let item of cartItems"></app-cart-item> -->
     </div>
 
     <div class="alert alert-info" *ngIf="cartItems?.length === 0">

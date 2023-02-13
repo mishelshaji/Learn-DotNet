@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { NgModule } from '@angular/core';
@@ -20,6 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NavbarComponent,
     FooterComponent,
     FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
