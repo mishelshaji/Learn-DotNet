@@ -8,13 +8,13 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class HomeComponent {
 
-    products:any[] = [];
+    products:ProductViewDto[] = [];
 
     constructor(private productsService: ProductsService) {
 
     }
 
     ngOnInit() {
-        this.products = this.productsService.getAll();
+        // this.products = this.productsService.getAll();
     }
 }

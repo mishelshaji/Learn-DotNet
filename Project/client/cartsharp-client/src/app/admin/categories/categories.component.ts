@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
 
 /**
@@ -10,7 +10,7 @@ import { CategoryService } from 'src/app/services/category.service';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent {
+export class CategoriesComponent implements OnInit {
 
     /**
      * This is the list of categories that will be displayed in the UI.
@@ -37,7 +37,7 @@ export class CategoriesComponent {
             next: (data) => {
                 this.categories = data;
             },
-            error: (err:any) => {
+            error: () => {
                 alert("Loading categories failed. Please try again later.");
             }
         })

@@ -1,25 +1,28 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductsService {
-    private products = [
-        {id: 1, name: 'Product 1', description: 'This is a product', category: 'General', price: 100},
-        {id: 2, name: 'Product 2', description: 'This is a product', category: 'General', price: 100},
-        {id: 3, name: 'Product 3', description: 'This is a product', category: 'General', price: 100},
-        {id: 4, name: 'Product 4', description: 'This is a product', category: 'General', price: 100},
-        {id: 5, name: 'Product 5', description: 'This is a product', category: 'General', price: 100},
-        {id: 6, name: 'Product 6', description: 'This is a product', category: 'General', price: 100},
-        {id: 7, name: 'Product 7', description: 'This is a product', category: 'General', price: 100},
-        {id: 8, name: 'Product 8', description: 'This is a product', category: 'General', price: 100},
-        {id: 9, name: 'Product 9', description: 'This is a product', category: 'General', price: 100},
-        {id: 10, name: 'Product 10', description: 'This is a product', category: 'General', price: 100},
-    ];
 
-    constructor() { }
+    url: string = "https://localhost:7036/api/admin/products";
 
-    getAll(){
-        return this.products;
+    constructor(private http: HttpClient) { }
+
+    getAll() {
+        return this.http.get<ProductViewDto[]>(this.url);
+    }
+
+    create(product: ProductCreateDto) {
+        return this.http.post<ProductViewDto>(this.url, product);
+    }
+
+    update(id: number, product: ProductCreateDto) {
+        return this.http.put<ProductViewDto>(`${this.url}/${id}`, product);
+    }
+
+    delete(id: number) {
+        return this.http.delete(`${this.url}/${id}`);
     }
 }

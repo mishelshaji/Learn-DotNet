@@ -1,5 +1,6 @@
 import { CategoryService } from './../../services/category.service';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 /**
  * This component is used to create a new category.
@@ -24,7 +25,7 @@ export class CreateCategoryComponent {
      * @param service This is the instance of CategoryService that will be used to
      * save the category to the server.
      */
-    constructor(private service: CategoryService) {
+    constructor(private service: CategoryService, private router: Router) {
 
     }
 
@@ -34,8 +35,11 @@ export class CreateCategoryComponent {
      */
     saveData() {
         this.service.create(this.model).subscribe({
-            next: data => alert("Category saved successfully"),
-            error: error => {
+            next: () => {
+                alert("Category saved successfully");
+                this.router.navigate(['/admin/categories']);
+            },
+            error: () => {
                 alert("Saving category failed");
             }
         });
