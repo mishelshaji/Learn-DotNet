@@ -6,12 +6,16 @@ import { Injectable } from '@angular/core';
 })
 export class ProductsService {
 
-    url: string = "https://localhost:7036/api/admin/products";
+    url = "https://localhost:7036/api/admin/products";
 
     constructor(private http: HttpClient) { }
 
     getAll() {
         return this.http.get<ProductViewDto[]>(this.url);
+    }
+
+    getById(id: number){
+        return this.http.get<ProductViewDto>(`${this.url}/${id}`);
     }
 
     create(product: ProductCreateDto) {

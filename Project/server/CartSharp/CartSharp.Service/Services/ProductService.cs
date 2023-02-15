@@ -104,7 +104,7 @@ namespace CartSharp.Service.Services
                 Stock = dto.Stock
             };
             _db.Products.Add(product);
-            //await _db.SaveChangesAsync();
+            await _db.SaveChangesAsync();
 
             result.Result = new()
             {

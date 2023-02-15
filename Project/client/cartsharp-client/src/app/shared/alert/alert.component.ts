@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 export enum AlertType {
@@ -22,7 +22,7 @@ export class AlertComponent {
     /**
      * The type of the alert. This will determine the color of the alert.
      */
-    @Input("type")
+    @Input()
     _type: AlertType = AlertType.Info;
     public get type(): AlertType {
         return this._type;

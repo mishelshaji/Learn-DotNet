@@ -24,5 +24,17 @@ namespace CartSharp.WebApp.Areas.User.Controllers
 
             return Ok();
         }
+
+        [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> PostLogin(LoginDto dto)
+        {
+            var result = await _service.LoginAsync(dto);
+            if (result.IsValid)
+                return Ok(result);
+            
+            return BadRequest(result.Errors);
+        }
     }
 }

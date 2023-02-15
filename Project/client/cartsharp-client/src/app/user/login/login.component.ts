@@ -1,18 +1,27 @@
+import { AccountsService } from './../../services/accounts.service';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-    model = {
+    model: LoginDto = {
         email: '',
         password: ''
-    };
+    }
 
+    constructor(private service: AccountsService) { }
 
-    onSubmit(form:any) {
-        console.log(form);
+    onSubmit() {
+        this.service.login(this.model).subscribe({
+            next: (result: any)=>{
+                console.log(result.result);
+            },
+            error: (err) => {
+                console.error(err);
+            }
+        })
     }
 }

@@ -1,111 +1,117 @@
 ﻿using CartSharp.Domain.Models;
 using CartSharp.Domain.Types;
-using CartSharp.Service.Data;
-using CartSharp.Service.Dto;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CartSharp.Service.Services
 {
-    public class CategoryService
+    public class AccountsService
     {
-        private readonly ApplicationDbContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<ApplicationUser> _signinManager;
+        private readonly IConfiguration _configuration;
 
-        public CategoryService(ApplicationDbContext db)
+        public AccountsService(
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            SignInManager<ApplicationUser> signinManager,
+            IConfiguration configuration)
         {
-            _db = db;
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _signinManager = signinManager;
+            _configuration = configuration;
         }
 
-        public async Task<List<CategoryViewDto>> GetAllAsync()
+        public async Task<ServiceResponse<bool>> CreateCustomerAsync(CustomerCreateDto dto)
         {
-            return await _db.Categories
-                .Select(c => new CategoryViewDto
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    Description = c.Description
-                })
-                .ToListAsync();
-            //return _db.Categories.Select(c => new CategoryViewDto(c)).ToList();
-        }
+            var response = new ServiceResponse<bool>();
 
-        public async Task<CategoryViewDto?> GetByIdAsync(int id)
-        {
-            Category? category = await _db.Categories.FindAsync(id);
-            return category == null ? null : new CategoryViewDto
+            var user = new ApplicationUser
             {
-                Id = category.Id,
-                Name = category.Name,
-                Description = category.Description
-            };
-        }
-
-        public async Task<CategoryViewDto> CreateAsync(CategoryCreateDto dto)
-        {
-            var category = new Category
-            {
-                Name = dto.Name,
-                Description = dto.Description
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Email = dto.Email,
+                UserName = Guid.NewGuid().ToString()
             };
 
-            _db.Categories.Add(category);
-            await _db.SaveChangesAsync();
-
-            return new CategoryViewDto
+            // Create the user and add to role.
+            var userStatus = await _userManager.CreateAsync(user, dto.Password);
+            if (!userStatus.Succeeded)
             {
-                Id = category.Id,
-                Name = category.Name,
-                Description = category.Description
-            };
-        }
-
-        public async Task<ServiceResponse<CategoryViewDto>?> UpdateAsync(int id, CategoryCreateDto dto)
-        {
-            var response = new ServiceResponse<CategoryViewDto>();
-
-            // Check if the category exists.
-            var category = await _db.Categories.FindAsync(id);
-            if (category == null)
-                return null;
-
-            // Check if any other category has the same name.
-            if(await _db.Categories.AnyAsync(m=>m.Name == dto.Name))
-            {
-                response.AddError("Name", "A category with the same name already exists.");
+                response.AddError("", "Failed to create user");
+                return response;
             }
 
-            if (!response.IsValid)
-                return response;
+            await _userManager.AddToRoleAsync(user, "Customer");
 
-            category.Name = dto.Name;
-            category.Description = dto.Description;
-            await _db.SaveChangesAsync();
-
-            response.Result = new CategoryViewDto
-            {
-                Id = category.Id,
-                Name = category.Name,
-                Description = category.Description
-            };
+            response.Result = true;
             return response;
         }
 
-        public async Task<ServiceResponse<bool>?> DeleteAsync(int id)
+        public async Task<ServiceResponse<string>> LoginAsync(LoginDto dto)
         {
-            var category = await _db.Categories.FindAsync(id);
-            if (category == null)
-                return null;
+            var response = new ServiceResponse<string>();
 
-            _db.Categories.Remove(category);
-            await _db.SaveChangesAsync();
-            return new ServiceResponse<bool>
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+            if(user == null)
             {
-                Result = true
+                response.AddError(nameof(dto.Email), "An account with this email does not exist.");
+                return response;
+            }
+
+            var signin = await _signinManager.CheckPasswordSignInAsync(user, dto.Password, true);
+            if (signin.Succeeded)
+            {
+                response.Result = GenerateToken(user);
+                return response;
+            }
+
+            // If the signin failed, generate error messages.
+            if (signin.IsLockedOut)
+                response.AddError("", "Account locked.");
+            else if (signin.IsNotAllowed)
+                response.AddError("", "You are not allowed to signin.");
+            else
+                response.AddError("", "Invalid email/password.");
+
+            return response;
+        }
+        
+
+        private string GenerateToken(ApplicationUser user)
+        {
+            var claims = new Claim[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}")
             };
+
+            string issuer = _configuration["Jwt:Issuer"];
+            string audience = _configuration["Jwt:Audience"];
+            string key = _configuration["Jwt:Key"];
+
+            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+            var credentials = new SigningCredentials(signingKey, "HS256");
+
+            var token = new JwtSecurityToken(
+                issuer,
+                audience,
+                claims,
+                expires: DateTime.Now.AddMinutes(1),
+                signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

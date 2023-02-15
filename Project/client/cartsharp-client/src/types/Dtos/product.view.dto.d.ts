@@ -29,7 +29,7 @@ declare interface ProductViewDto {
     /**
      * The stock of the product.
      */
-    stock: string;
+    stock: number;
 
     /**
      * Category of the product.

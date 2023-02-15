@@ -9,7 +9,7 @@ import { CreateCategoryComponent } from './create-category/create-category.compo
 import { CategoriesComponent } from './categories/categories.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { CreateProductComponent } from './create-product/create-product.component';
-
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { CreateProductComponent } from './create-product/create-product.componen
     CategoriesComponent,
     EditCategoryComponent,
     CreateProductComponent,
+    ProductsComponent,
   ],
   imports: [
     CommonModule,

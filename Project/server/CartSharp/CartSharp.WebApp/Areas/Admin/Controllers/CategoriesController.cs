@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CartSharp.WebApp.Areas.Admin.Controllers
 {
+    [Authorize]
     public class CategoriesController : AdminControllerBase
     {
         private readonly CategoryService _service;

@@ -8,11 +8,8 @@ import { Component } from '@angular/core';
 export class CartComponent {
     cartItems = [];
 
-    constructor() {
-
-    }
 
     deleteItem(id: number) {
-
+        console.log('Delete function was called.')
     }
 }

@@ -8,15 +8,15 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 })
 export class CartItemComponent {
 
-    @Input("item") cartItem: any;
+    @Input() cartItem: any;
 
-    @Output("delete") delete = new EventEmitter<number>();
+    @Output() delete = new EventEmitter<number>();
 
     faTrash = faTrash;
 
     updateQuantity(e:MouseEvent) {
-        let target = e.target as HTMLOptionElement;
-        let option = target.getAttribute("data-action");
+        const target = e.target as HTMLOptionElement;
+        const option = target.getAttribute("data-action");
 
         if (option === 'sub' && this.cartItem.quantity === 1) {
             return;
@@ -30,7 +30,7 @@ export class CartItemComponent {
     }
 
     deleteItem(){
-        let option = confirm("Do you want to delete?");
+        const option = confirm("Do you want to delete?");
         if (option) {
             this.delete.emit(this.cartItem.id);
         }

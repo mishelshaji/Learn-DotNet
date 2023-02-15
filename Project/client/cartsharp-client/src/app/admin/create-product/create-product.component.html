@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="text-center my-4">Add Product</h1>
+    <h1 class="text-center my-4">Product</h1>
     <form #form="ngForm" (ngSubmit)="saveData()" *ngIf="categories">
         <div>
             <label for="name">Name</label>
@@ -19,11 +19,11 @@
         </div>
         <div>
             <label for="name">Stock</label>
-            <textarea type="text" name="stock" [(ngModel)]="model.stock" class="form-control" required></textarea>
+            <input type="number" name="stock" [(ngModel)]="model.stock" class="form-control" required>
         </div>
         <div>
             <label for="name">Category</label>
-            <select name="categoryId" class="form-control">
+            <select name="categoryId" class="form-control" [(ngModel)]="model.categoryId">
                 <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
             </select>
         </div>

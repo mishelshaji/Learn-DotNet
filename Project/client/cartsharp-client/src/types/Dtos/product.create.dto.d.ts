@@ -23,7 +23,7 @@ declare interface ProductCreateDto {
     /**
      * The stock of the product.
      */
-    stock: string;
+    stock: number;
 
     /**
      * The category id of the product.

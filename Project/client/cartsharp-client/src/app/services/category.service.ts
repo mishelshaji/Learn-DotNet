@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 /**
  * This service is used to manage categories. It will be used by the components
@@ -15,7 +14,7 @@ export class CategoryService {
     /**
      * This is the base URL of the API. It will be used to make HTTP requests.
      */
-    url:string = 'https://localhost:7036/api/admin/categories';
+    url = 'https://localhost:7036/api/admin/categories';
 
     constructor(private http: HttpClient) { }
 
