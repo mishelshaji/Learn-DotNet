@@ -1,3 +1,5 @@
+import { TokenHelper } from './../../../utilities/helpers/tokenHelper';
+import { Router } from '@angular/router';
 import { AccountsService } from './../../services/accounts.service';
 import { Component } from '@angular/core';
 
@@ -12,15 +14,16 @@ export class LoginComponent {
         password: ''
     }
 
-    constructor(private service: AccountsService) { }
+    constructor(
+        private service: AccountsService,
+        private router: Router,
+        private tokenHelper: TokenHelper) { }
 
     onSubmit() {
         this.service.login(this.model).subscribe({
-            next: (result: any)=>{
-                console.log(result.result);
-            },
-            error: (err) => {
-                console.error(err);
+            next: (response: any) => {
+                this.tokenHelper.setToken(response.result);
+                this.router.navigateByUrl('/customer/profile');
             }
         })
     }

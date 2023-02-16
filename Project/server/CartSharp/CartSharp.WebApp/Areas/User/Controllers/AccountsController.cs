@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace CartSharp.WebApp.Areas.User.Controllers
 {
@@ -35,6 +37,15 @@ namespace CartSharp.WebApp.Areas.User.Controllers
                 return Ok(result);
             
             return BadRequest(result.Errors);
+        }
+
+        [Authorize(Roles = "Customer")]
+        [HttpGet("profile")]
+        public async Task<IActionResult> GetProfile()
+        {
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _service.GetProfileAsync(id);
+            return user == null ? NotFound() : Ok(user);
         }
     }
 }

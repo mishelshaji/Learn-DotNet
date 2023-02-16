@@ -6,7 +6,7 @@
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <div class="collapse navbar-collapse" id="collapsibleNavId" *ngIf="!isAuthenticated">
             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/register']">Register</a>
@@ -15,6 +15,9 @@
                     <a class="btn btn-warning" [routerLink]="['/login']">Login</a>
                 </li>
             </ul>
+        </div>
+        <div>
+            <p class="text-light">Welcome User!</p>
         </div>
     </div>
 </nav>

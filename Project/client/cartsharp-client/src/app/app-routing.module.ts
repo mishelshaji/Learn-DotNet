@@ -1,3 +1,4 @@
+import { CustomerGuard } from '../utilities/guards/customer.guard';
 import { NotFoundComponent } from './user/not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -9,6 +10,7 @@ const routes: Routes = [
     },
     {
         path: 'customer',
+        canActivate: [CustomerGuard],
         loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule)
     },
     {

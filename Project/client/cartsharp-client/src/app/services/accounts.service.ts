@@ -15,4 +15,8 @@ export class AccountsService {
     login(model: LoginDto){
         return this.http.post(this.url + "/login", model);
     }
+
+    getProfile(){
+        return this.http.get(this.url + "/profile");
+    }
 }

@@ -87,14 +87,37 @@ namespace CartSharp.Service.Services
 
             return response;
         }
+
+        public async Task<ProfileViewDto> GetProfileAsync(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if(user == null)
+            {
+                return null;
+            }
+
+            return new ProfileViewDto
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber
+            };
+        }
         
 
         private string GenerateToken(ApplicationUser user)
         {
+            var role = _userManager.GetRolesAsync(user)
+                .GetAwaiter()
+                .GetResult()
+                .First();
+
             var claims = new Claim[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}")
+                new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+                new Claim(ClaimTypes.Role, role)
             };
 
             string issuer = _configuration["Jwt:Issuer"];
@@ -108,7 +131,7 @@ namespace CartSharp.Service.Services
                 issuer,
                 audience,
                 claims,
-                expires: DateTime.Now.AddMinutes(1),
+                expires: DateTime.Now.AddDays(1),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

@@ -1,3 +1,4 @@
+import { TokenHelper } from './../../../utilities/helpers/tokenHelper';
 import { RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,4 +12,12 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
 
+    token: any = {};
+
+    isAuthenticated = false;
+
+    constructor(private tokenHelper: TokenHelper) {
+        this.token = tokenHelper.getDecodedToken();
+        this.isAuthenticated = tokenHelper.hasToken();
+    }
 }
