@@ -27,6 +27,9 @@ namespace CartSharp.Domain.Models
         [Range(0, 1000)]
         public int Stock { get; set; }
 
+        [StringLength(250)]
+        public string? Image { get; set; }
+
         public int CategoryId { get; set; }
         public Category Category { get; set; }
     }

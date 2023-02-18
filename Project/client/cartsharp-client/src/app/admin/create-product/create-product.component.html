@@ -6,23 +6,28 @@
             <input type="text" name="name" [(ngModel)]="model.name" class="form-control" required>
         </div>
         <div>
-            <label for="name">Meta Description</label>
+            <label for="metaDescription">Meta Description</label>
             <textarea type="text" name="metaDescription" [(ngModel)]="model.metaDescription" class="form-control" required></textarea>
         </div>
         <div>
-            <label for="name">Description</label>
+            <label for="description">Description</label>
             <textarea type="text" name="description" [(ngModel)]="model.description" class="form-control" required></textarea>
         </div>
         <div>
-            <label for="name">Price</label>
+            <label for="price">Price</label>
             <input type="text" name="price" [(ngModel)]="model.price" class="form-control" required>
         </div>
         <div>
-            <label for="name">Stock</label>
+            <label for="stock">Stock</label>
             <input type="number" name="stock" [(ngModel)]="model.stock" class="form-control" required>
         </div>
         <div>
-            <label for="name">Category</label>
+            <label for="image">Image</label>
+            <input type="file" name="image" class="form-control" required
+                (change)="fileSelected($event)">
+        </div>
+        <div>
+            <label for="categoryId">Category</label>
             <select name="categoryId" class="form-control" [(ngModel)]="model.categoryId">
                 <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
             </select>

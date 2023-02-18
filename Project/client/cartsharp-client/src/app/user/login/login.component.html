@@ -21,6 +21,9 @@
                     <div *ngIf="email.errors?.['maxlength']">Email is too long.</div>
                     <div *ngIf="email.errors?.['pattern']">Email is invalid.</div>
                 </div>
+                <div *ngIf="errors?.Email" class="text-danger">
+                    <div *ngFor="let err of errors.Email">{{err}}</div>
+                </div>
             </div>
             <div>
                 <label for="password">Password</label>

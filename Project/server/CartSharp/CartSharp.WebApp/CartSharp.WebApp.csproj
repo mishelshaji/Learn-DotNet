@@ -23,4 +23,8 @@
     <ProjectReference Include="..\CartSharp.Service\CartSharp.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

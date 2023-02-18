@@ -18,7 +18,7 @@ export class ProductsService {
         return this.http.get<ProductViewDto>(`${this.url}/${id}`);
     }
 
-    create(product: ProductCreateDto) {
+    create(product: ProductCreateDto | FormData) {
         return this.http.post<ProductViewDto>(this.url, product);
     }
 

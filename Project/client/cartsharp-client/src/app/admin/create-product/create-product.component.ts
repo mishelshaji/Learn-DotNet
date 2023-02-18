@@ -18,12 +18,14 @@ export class CreateProductComponent implements OnInit {
         metaDescription: '',
         price: 0,
         stock: 0,
-        categoryId: 0
+        categoryId: 1
     }
 
     categories: CategoryViewDto[] | null = null;
 
     productId: number | null = null;
+
+    formData = new FormData();
 
     constructor(
         private productService: ProductsService,
@@ -67,13 +69,14 @@ export class CreateProductComponent implements OnInit {
     }
 
     saveData() {
-        if(this.isUpdate)
-        {
-            this.updateData()
-            return;
-        }
+        this.formData.append("name", this.model.name);
+        this.formData.append("description", this.model.description);
+        this.formData.append("metaDescription", this.model.metaDescription);
+        this.formData.append("price", this.model.price.toString());
+        this.formData.append("stock", this.model.stock.toString());
+        this.formData.append("categoryId", this.model.categoryId.toString());
 
-        this.productService.create(this.model).subscribe({
+        this.productService.create(this.formData).subscribe({
             next: () => {
                 alert("Product created successfully");
                 return this.router.navigate(['admin', 'products']);
@@ -85,15 +88,10 @@ export class CreateProductComponent implements OnInit {
         })
     }
 
-    updateData() {
-        this.productService.update(this.productId as number, this.model).subscribe({
-            next: () => {
-                alert('Product updated successfully.');
-                return this.router.navigate(['admin', 'products']);
-            },
-            error: (err: unknown) => {
-                console.error(err);
-            }
-        })
+    fileSelected(e: any) {
+        const file:File = e.target.files[0];
+        if (file) {
+            this.formData.append("image", file, file.name);
+        }
     }
 }

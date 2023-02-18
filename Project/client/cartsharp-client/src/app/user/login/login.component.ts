@@ -14,6 +14,8 @@ export class LoginComponent {
         password: ''
     }
 
+    errors : any;
+
     constructor(
         private service: AccountsService,
         private router: Router,
@@ -24,6 +26,12 @@ export class LoginComponent {
             next: (response: any) => {
                 this.tokenHelper.setToken(response.result);
                 this.router.navigateByUrl('/customer/profile');
+            },
+            error: (error: any) => {
+                // {
+                //     Email: ['The Email field is required.'],
+                // }
+                this.errors = error.error;
             }
         })
     }

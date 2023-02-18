@@ -23,6 +23,8 @@ namespace CartSharp.Service.Dto
 
         public int Stock { get; set; }
 
+        public string Image { get; set; }
+
         public CategoryViewDto Category { get; set; }
     }
 

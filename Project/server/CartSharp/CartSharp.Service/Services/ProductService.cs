@@ -1,5 +1,6 @@
 ﻿using CartSharp.Domain.Types;
 using CartSharp.Service.Dto;
+using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,14 @@ namespace CartSharp.Service.Services
     public class ProductService
     {
         private readonly ApplicationDbContext _db;
+        private readonly IHostingEnvironment _webHost;
 
-        public ProductService(ApplicationDbContext db)
+        public ProductService(
+            ApplicationDbContext db,
+            IHostingEnvironment webHost)
         {
             _db = db;
+            _webHost = webHost;
         }
 
         private void Validate(ProductCreateDto dto, ServiceResponse<ProductViewDto> result)
@@ -67,6 +72,7 @@ namespace CartSharp.Service.Services
                     MetaDescription = product.MetaDescription,
                     Price = product.Price,
                     Stock = product.Stock,
+                    Image = product.Image,
                     Category = new()
                     {
                         Id = product.Category.Id,
@@ -91,8 +97,31 @@ namespace CartSharp.Service.Services
             if (await _db.Products.AnyAsync(m => m.Name == dto.Name))
                 result.AddError(nameof(dto.Name), "A similar product already exists.");
 
+            if (dto.Image is null)
+                result.AddError(nameof(dto.Image), "Please provide a product image.");
+
             if (!result.IsValid)
                 return result;
+
+            // Saving product image to disk.
+            string fileNameByUser = dto.Image.FileName;
+            string fileExtension = Path.GetExtension(fileNameByUser).ToLower();
+            var allowedFileExtensions = new[] { ".jpg", ".jpeg", ".png" };
+
+            if (!allowedFileExtensions.Contains(fileExtension))
+            {
+                result.AddError(nameof(dto.Image), "Invalid file type.");
+                return result;
+            }
+
+            string staticFileDirs = _webHost.WebRootPath;
+            string uniqueFileName = Guid.NewGuid().ToString() + fileExtension;
+            string uploadsDir = Path.Join(staticFileDirs, "uploads", uniqueFileName);
+
+            using (var fileStream = new FileStream(uploadsDir, FileMode.Create))
+            {
+                await dto.Image.CopyToAsync(fileStream);
+            }
 
             var product = new Product()
             {
@@ -101,7 +130,8 @@ namespace CartSharp.Service.Services
                 Description = dto.Description,
                 MetaDescription = dto.MetaDescription,
                 Price = dto.Price,
-                Stock = dto.Stock
+                Stock = dto.Stock,
+                Image = Path.Combine(uniqueFileName)
             };
             _db.Products.Add(product);
             await _db.SaveChangesAsync();

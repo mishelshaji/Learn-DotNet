@@ -1,3 +1,4 @@
+import { UnauthorizedInterceptor } from './../utilities/interceptors/unauthorized.interceptor';
 import { TokenInterceptor } from '../utilities/interceptors/token.interceptor';
 import { TokenHelper } from './../utilities/helpers/tokenHelper';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -26,7 +27,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ],
     providers: [
         TokenHelper,
-        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptor, multi: true}
     ],
     bootstrap: [AppComponent],
 })

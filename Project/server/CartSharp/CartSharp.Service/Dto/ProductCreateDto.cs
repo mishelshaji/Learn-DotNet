@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace CartSharp.Service.Dto
 {
@@ -22,5 +23,7 @@ namespace CartSharp.Service.Dto
         public int Stock { get; set; }
 
         public int CategoryId { get; set; }
+
+        public IFormFile? Image { get; set; }
     }
 }

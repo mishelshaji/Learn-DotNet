@@ -35,7 +35,7 @@ namespace CartSharp.WebApp.Areas.Admin.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(ProductViewDto), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Create(ProductCreateDto dto)
+        public async Task<IActionResult> Create([FromForm]ProductCreateDto dto)
         {
             var result = await _service.CreateAsync(dto);
             if (!result.IsValid)
